@@ -29,7 +29,8 @@ export function Layout({ children }: { children: ReactNode }) {
           <Logo className="w-10 h-10 text-white" />
           <h1 className="text-xl font-bold leading-tight">
             Rural Utility<br/>
-            <span className="text-green-300">Cost.com</span>
+            <span className="text-green-300">Cost</span>
+            <span className="text-green-400/80 ml-0.5">$</span>
           </h1>
         </div>
         <div className="flex-grow py-4 overflow-y-auto">
