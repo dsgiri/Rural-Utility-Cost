@@ -13,6 +13,13 @@ import Livestock from './pages/Livestock';
 import Solar from './pages/Solar';
 import Internet from './pages/Internet';
 import Cable from './pages/Cable';
+import Fencing from './pages/Fencing';
+import Propane from './pages/Propane';
+import Gestation from './pages/Gestation';
+import Incubation from './pages/Incubation';
+import CutCost from './pages/CutCost';
+import ExpandProfit from './pages/ExpandProfit';
+import GrantFinder from './pages/GrantFinder';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Disclaimer from './pages/Disclaimer';
@@ -35,6 +42,13 @@ export default function App() {
           <Route path="/solar" element={<Solar />} />
           <Route path="/internet" element={<Internet />} />
           <Route path="/cable" element={<Cable />} />
+          <Route path="/fencing" element={<Fencing />} />
+          <Route path="/propane" element={<Propane />} />
+          <Route path="/gestation" element={<Gestation />} />
+          <Route path="/incubation" element={<Incubation />} />
+          <Route path="/cut-cost" element={<CutCost />} />
+          <Route path="/expand-profit" element={<ExpandProfit />} />
+          <Route path="/grant-finder" element={<GrantFinder />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/disclaimer" element={<Disclaimer />} />

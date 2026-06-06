@@ -1,97 +1,202 @@
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search } from 'lucide-react';
 
-const calculators = [
+const calculatorCategories = [
   {
-    path: '/water-fill',
-    title: 'Water Fill Charge',
-    desc: 'Calculate water delivery cost for rural homes, wells, septic, and pools.',
-    icon: Droplet,
-    features: ['Base delivery fees', 'Mileage calculations', 'Potable vs Non-potable', 'Truckload estimates'],
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
-    border: 'border-blue-100',
+    title: "Property & Construction",
+    desc: "Building, land prep, site work",
+    items: [
+      {
+        path: '/septic',
+        title: 'Septic Tank Size',
+        desc: 'Calculate the right septic tank size based on bedrooms, state codes, and soil type.',
+        icon: LayoutGrid,
+        features: ['EPA sizing formulas', 'Soil type impact', 'State requirements', 'Installation cost est.'],
+        color: 'text-amber-600',
+        bg: 'bg-amber-50',
+        border: 'border-amber-100',
+      },
+      {
+        path: '/fill-dirt',
+        title: 'Fill Dirt Cost',
+        desc: 'Calculate fill dirt cost for grading, backfill, landscaping, and construction.',
+        icon: Shovel,
+        features: ['Cubic yards to tons', 'Delivery fee guide', 'Regional cost averages', 'Truckload count'],
+        color: 'text-orange-600',
+        bg: 'bg-orange-50',
+        border: 'border-orange-100',
+      },
+      {
+        path: '/gravel',
+        title: 'Gravel Cost',
+        desc: 'Calculate gravel cost per ton for driveways, landscaping, and base materials.',
+        icon: Trees,
+        features: ['Crushed, Pea, River', 'Volume to weight', 'Delivery fee guide', 'Driveway depth guide'],
+        color: 'text-stone-600',
+        bg: 'bg-stone-50',
+        border: 'border-stone-200',
+      },
+      {
+        path: '/fencing',
+        title: 'Fencing Cost',
+        desc: 'Estimate the cost of rural fencing, including barbed wire, woven wire, wood, and electric.',
+        icon: Crop,
+        features: ['Material type pricing', 'Gate cost additions', 'Labor estimation', 'Custom perimeters'],
+        color: 'text-lime-600',
+        bg: 'bg-lime-50',
+        border: 'border-lime-100',
+      },
+      {
+        path: '/well',
+        title: 'Well Water Drilling',
+        desc: 'Calculate well drilling cost per foot based on depth, soil type, and region.',
+        icon: ArrowDownToDot,
+        features: ['Cost by soil type', 'Pump hardware estimates', 'Dry-hole warnings', 'Overall system cost'],
+        color: 'text-cyan-600',
+        bg: 'bg-cyan-50',
+        border: 'border-cyan-100',
+      }
+    ]
   },
   {
-    path: '/septic',
-    title: 'Septic Tank Size',
-    desc: 'Calculate the right septic tank size based on bedrooms, state codes, and soil type.',
-    icon: LayoutGrid,
-    features: ['EPA sizing formulas', 'Soil type impact', 'State requirements', 'Installation cost est.'],
-    color: 'text-amber-600',
-    bg: 'bg-amber-50',
-    border: 'border-amber-100',
+    title: "Energy & Utilities",
+    desc: "Water, propane, solar, internet",
+    items: [
+      {
+        path: '/water-fill',
+        title: 'Water Fill Charge',
+        desc: 'Calculate water delivery cost for rural homes, wells, septic, and pools.',
+        icon: Droplet,
+        features: ['Base delivery fees', 'Mileage calculations', 'Potable vs Non-potable', 'Truckload estimates'],
+        color: 'text-blue-600',
+        bg: 'bg-blue-50',
+        border: 'border-blue-100',
+      },
+      {
+        path: '/propane',
+        title: 'Propane Refill',
+        desc: 'Calculate cost and volume to refill residential and agricultural propane tanks.',
+        icon: Flame,
+        features: ['80% max safe fill', 'Gallon estimates', 'Total cost estimation', 'Tank size selection'],
+        color: 'text-red-600',
+        bg: 'bg-red-50',
+        border: 'border-red-100',
+      },
+      {
+        path: '/solar',
+        title: 'Off-Grid Solar',
+        desc: 'Calculate solar panel and battery size for off-grid homes, cabins, and homesteads.',
+        icon: Sun,
+        features: ['Load profiling', 'Battery DoD sizing', 'Inverter inefficiency', 'Panel count by sun hours'],
+        color: 'text-yellow-600',
+        bg: 'bg-yellow-50',
+        border: 'border-yellow-100',
+      },
+      {
+        path: '/internet',
+        title: 'Rural Internet Cost',
+        desc: 'Compare internet options for rural homes: Starlink, 5G cell tower, DSL, fiber, cable.',
+        icon: Wifi,
+        features: ['Provider availability', 'Speed comparisons', 'Price analysis', 'Mesh network alerts'],
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-100',
+      },
+      {
+        path: '/cable',
+        title: 'Cable TV Cost',
+        desc: 'Compare cable TV package costs: Satellite, Streaming Bundles by ZIP.',
+        icon: Tv,
+        features: ['Dish vs DirecTV', 'Streaming alternatives', 'Hardware fee warnings', 'Channel volume comparison'],
+        color: 'text-indigo-600',
+        bg: 'bg-indigo-50',
+        border: 'border-indigo-100',
+      }
+    ]
   },
   {
-    path: '/fill-dirt',
-    title: 'Fill Dirt Cost',
-    desc: 'Calculate fill dirt cost for grading, backfill, landscaping, and construction.',
-    icon: Shovel,
-    features: ['Cubic yards to tons', 'Delivery fee guide', 'Regional cost averages', 'Truckload count'],
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    border: 'border-orange-100',
+    title: "Animal & Farm",
+    desc: "Livestock, breeding, poultry",
+    items: [
+      {
+        path: '/livestock',
+        title: 'Livestock Water',
+        desc: 'Calculate daily water needs for cattle, sheep, goats, horses, pigs, and chickens.',
+        icon: PawPrint,
+        features: ['USDA water guidelines', 'Temperature adjustments', 'Lactation overhead', 'Trough sizing'],
+        color: 'text-red-600',
+        bg: 'bg-red-50',
+        border: 'border-red-100',
+      },
+      {
+        path: '/gestation',
+        title: 'Animal Gestation',
+        desc: 'Estimate due dates for livestock and farm animals based on breeding and service dates.',
+        icon: CalendarHeart,
+        features: ['Multiple animal types', 'Forward/backward dates', 'Gestation length', 'Due date calculation'],
+        color: 'text-rose-600',
+        bg: 'bg-rose-50',
+        border: 'border-rose-100',
+      },
+      {
+        path: '/incubation',
+        title: 'Egg Incubation',
+        desc: 'Calculate chicken egg hatch dates, lockdown day, and stop-turning date for poultry.',
+        icon: Bird,
+        features: ['Set date tracking', 'Lockdown day', 'Stop turning dates', 'Multiple bird species'],
+        color: 'text-amber-600',
+        bg: 'bg-amber-50',
+        border: 'border-amber-100',
+      }
+    ]
   },
   {
-    path: '/gravel',
-    title: 'Gravel Cost',
-    desc: 'Calculate gravel cost per ton for driveways, landscaping, and base materials.',
-    icon: Trees,
-    features: ['Crushed, Pea, River', 'Volume to weight', 'Delivery fee guide', 'Driveway depth guide'],
-    color: 'text-stone-600',
-    bg: 'bg-stone-50',
-    border: 'border-stone-200',
+    title: "Business & Profit",
+    desc: "Revenue, savings, profit planning",
+    items: [
+      {
+        path: '/cut-cost',
+        title: 'Cut Cost Calculator',
+        desc: 'Estimate the expense reduction needed to hit profit targets for your business.',
+        icon: Scissors,
+        features: ['Monthly savings targets', 'Profit margin optimization', 'Variable vs fixed splits', 'Annual savings tracking'],
+        color: 'text-indigo-600',
+        bg: 'bg-indigo-50',
+        border: 'border-indigo-100',
+      },
+      {
+        path: '/expand-profit',
+        title: 'Expand Profit Calculator',
+        desc: 'Calculate the required revenue growth to reach break-even or target margins.',
+        icon: TrendingUp,
+        features: ['Revenue forecasting', 'Profit targeting', 'Margin impact analysis', 'Break-even assessment'],
+        color: 'text-fuchsia-600',
+        bg: 'bg-fuchsia-50',
+        border: 'border-fuchsia-100',
+      }
+    ]
   },
   {
-    path: '/well',
-    title: 'Well Water Drilling',
-    desc: 'Calculate well drilling cost per foot based on depth, soil type, and region.',
-    icon: ArrowDownToDot,
-    features: ['Cost by soil type', 'Pump hardware estimates', 'Dry-hole warnings', 'Overall system cost'],
-    color: 'text-cyan-600',
-    bg: 'bg-cyan-50',
-    border: 'border-cyan-100',
+    title: "Government Aid & Grants",
+    desc: "Funding, rebates, eligibility",
+    items: [
+      {
+        path: '/grant-finder',
+        title: 'Grant & Aid Finder',
+        desc: 'Search for static government programs, rebates, and aid fitting your business.',
+        icon: Search,
+        features: ['USDA & SBA loans', 'Sector-based search', 'Disaster relief resources', 'Eligibility basics'],
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-100',
+      }
+    ]
   },
   {
-    path: '/livestock',
-    title: 'Livestock Water',
-    desc: 'Calculate daily water needs for cattle, sheep, goats, horses, pigs, and chickens.',
-    icon: PawPrint,
-    features: ['USDA water guidelines', 'Temperature adjustments', 'Lactation overhead', 'Trough sizing'],
-    color: 'text-red-600',
-    bg: 'bg-red-50',
-    border: 'border-red-100',
-  },
-  {
-    path: '/solar',
-    title: 'Off-Grid Solar',
-    desc: 'Calculate solar panel and battery size for off-grid homes, cabins, and homesteads.',
-    icon: Sun,
-    features: ['Load profiling', 'Battery DoD sizing', 'Inverter inefficiency', 'Panel count by sun hours'],
-    color: 'text-yellow-600',
-    bg: 'bg-yellow-50',
-    border: 'border-yellow-100',
-  },
-  {
-    path: '/internet',
-    title: 'Rural Internet Cost',
-    desc: 'Compare internet options for rural homes: Starlink, 5G cell tower, DSL, fiber, cable.',
-    icon: Wifi,
-    features: ['Provider availability', 'Speed comparisons', 'Price analysis', 'Mesh network alerts'],
-    color: 'text-emerald-600',
-    bg: 'bg-emerald-50',
-    border: 'border-emerald-100',
-  },
-  {
-    path: '/cable',
-    title: 'Cable TV Cost',
-    desc: 'Compare cable TV package costs: Satellite, Streaming Bundles by ZIP.',
-    icon: Tv,
-    features: ['Dish vs DirecTV', 'Streaming alternatives', 'Hardware fee warnings', 'Channel volume comparison'],
-    color: 'text-indigo-600',
-    bg: 'bg-indigo-50',
-    border: 'border-indigo-100',
+    title: "Home Services / Rural Living",
+    desc: "Misc rural living tools",
+    items: []
   }
 ];
 
@@ -126,43 +231,56 @@ export default function Home() {
 
       {/* CALCULATOR GRID */}
       <section className="px-4 py-8 max-w-7xl mx-auto w-full flex-grow">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-tight">Our Calculation Tools</h2>
-          <div className="h-1 w-16 bg-[#1a5f3f] mx-auto mt-3 rounded-full"></div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tight">Our Calculation Tools</h2>
+          <div className="h-1 w-16 bg-[#1a5f3f] mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {calculators.map((calc, idx) => {
-            const Icon = calc.icon;
+        <div className="space-y-16">
+          {calculatorCategories.map((category, catIdx) => {
+            if (category.items.length === 0) return null;
             return (
-              <Link key={idx} to={calc.path} className="group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                <div className={`p-6 pb-5 border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
-                  <div className={`p-3 rounded-xl bg-white shadow-sm border ${calc.border}`}>
-                    <Icon className={`w-7 h-7 ${calc.color}`} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#1a5f3f] transition-colors">{calc.title}</h3>
-                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">{calc.desc}</p>
-                  </div>
+              <div key={catIdx} className="space-y-6">
+                <div className="border-b border-gray-200 pb-3">
+                  <h3 className="text-2xl font-bold text-gray-900">{category.title}</h3>
+                  <p className="text-gray-500 mt-1">{category.desc}</p>
                 </div>
-                
-                <div className="p-6 flex flex-col flex-grow">
-                  <ul className="space-y-3 flex-grow mb-6">
-                    {calc.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle2 className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="mt-auto flex items-center justify-between text-sm font-bold text-white bg-[#1a5f3f] group-hover:bg-[#154d32] transition-colors p-3.5 rounded-xl uppercase tracking-wider shadow-sm">
-                    <span>Calculate Now</span>
-                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.items.map((calc, idx) => {
+                    const Icon = calc.icon;
+                    return (
+                      <Link key={idx} to={calc.path} className="group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div className={`p-6 pb-5 border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
+                          <div className={`p-3 rounded-xl bg-white shadow-sm border ${calc.border}`}>
+                            <Icon className={`w-7 h-7 ${calc.color}`} />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#1a5f3f] transition-colors">{calc.title}</h3>
+                            <p className="text-xs text-gray-500 mt-1 leading-relaxed">{calc.desc}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="p-6 flex flex-col flex-grow">
+                          <ul className="space-y-3 flex-grow mb-6">
+                            {calc.features.map((feature, fIdx) => (
+                              <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
+                                <CheckCircle2 className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          
+                          <div className="mt-auto flex items-center justify-between text-sm font-bold text-white bg-[#1a5f3f] group-hover:bg-[#154d32] transition-colors p-3.5 rounded-xl uppercase tracking-wider shadow-sm">
+                            <span>Calculate Now</span>
+                            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
-              </Link>
-            )
+              </div>
+            );
           })}
         </div>
       </section>

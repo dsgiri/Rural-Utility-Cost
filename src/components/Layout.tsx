@@ -1,21 +1,57 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode } from 'react';
 import { Logo } from './Logo';
 import { A11yControls } from './A11yControls';
 
+const navCategories = [
+  {
+    title: "Property & Construction",
+    items: [
+      { path: '/septic', label: 'Septic Tank Size', icon: LayoutGrid },
+      { path: '/fill-dirt', label: 'Fill Dirt Cost', icon: Shovel },
+      { path: '/gravel', label: 'Gravel Cost', icon: Trees },
+      { path: '/fencing', label: 'Fencing Cost', icon: Crop },
+      { path: '/well', label: 'Well Water Drilling', icon: ArrowDownToDot },
+    ]
+  },
+  {
+    title: "Energy & Utilities",
+    items: [
+      { path: '/water-fill', label: 'Water Fill Charge', icon: Droplet },
+      { path: '/propane', label: 'Propane Refill', icon: Flame },
+      { path: '/solar', label: 'Off-Grid Solar', icon: Sun },
+      { path: '/internet', label: 'Wireless Internet', icon: Wifi },
+      { path: '/cable', label: 'Cable TV', icon: Tv },
+    ]
+  },
+  {
+    title: "Animal & Farm",
+    items: [
+      { path: '/livestock', label: 'Livestock Water', icon: PawPrint },
+      { path: '/gestation', label: 'Animal Gestation', icon: CalendarHeart },
+      { path: '/incubation', label: 'Egg Incubation', icon: Bird },
+    ]
+  },
+  {
+    title: "Business & Profit",
+    items: [
+      { path: '/cut-cost', label: 'Cut Cost', icon: Scissors },
+      { path: '/expand-profit', label: 'Expand Profit', icon: TrendingUp },
+    ]
+  },
+  {
+    title: "Government Aid & Grants",
+    items: [
+      { path: '/grant-finder', label: 'Grant Finder', icon: Search },
+    ]
+  }
+];
+
 const navItems = [
   { path: '/', label: 'Home Dashboard', icon: HomeIcon },
-  { path: '/water-fill', label: 'Water Fill Charge', icon: Droplet },
-  { path: '/septic', label: 'Septic Tank Size', icon: LayoutGrid },
-  { path: '/fill-dirt', label: 'Fill Dirt Cost', icon: Shovel },
-  { path: '/gravel', label: 'Gravel Cost', icon: Trees },
-  { path: '/well', label: 'Well Water Drilling', icon: ArrowDownToDot },
-  { path: '/livestock', label: 'Livestock Water', icon: PawPrint },
-  { path: '/solar', label: 'Off-Grid Solar', icon: Sun },
-  { path: '/internet', label: 'Wireless Internet', icon: Wifi },
-  { path: '/cable', label: 'Cable TV', icon: Tv },
+  ...navCategories.flatMap(c => c.items)
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -35,26 +71,49 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
         <div className="flex-grow py-4 overflow-y-auto">
           <ul className="space-y-1">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.path;
-              return (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className={cn(
-                      'px-6 py-3 flex items-center gap-3 cursor-pointer transition-all',
-                      isActive
-                        ? 'bg-white/10 border-l-4 border-green-300 opacity-100'
-                        : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent'
-                    )}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm tracking-wide">{item.label}</span>
-                  </Link>
-                </li>
-              );
-            })}
+            <li>
+              <Link
+                to="/"
+                className={cn(
+                  'px-6 py-3 flex items-center gap-3 cursor-pointer transition-all',
+                  location.pathname === '/'
+                    ? 'bg-white/10 border-l-4 border-green-300 opacity-100'
+                    : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent'
+                )}
+              >
+                <HomeIcon className="w-4 h-4" />
+                <span className="text-sm tracking-wide">Home Dashboard</span>
+              </Link>
+            </li>
+            {navCategories.map((category) => (
+              <li key={category.title} className="pt-4">
+                <div className="px-6 pb-2 text-xs font-bold text-green-300/70 uppercase tracking-wider">
+                  {category.title}
+                </div>
+                <ul className="space-y-1">
+                  {category.items.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <li key={item.path}>
+                        <Link
+                          to={item.path}
+                          className={cn(
+                            'px-6 py-2.5 flex items-center gap-3 cursor-pointer transition-all',
+                            isActive
+                              ? 'bg-white/10 border-l-4 border-green-300 opacity-100'
+                              : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent'
+                          )}
+                        >
+                          <Icon className="w-4 h-4" />
+                          <span className="text-sm tracking-wide">{item.label}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
