@@ -41,6 +41,13 @@ export default function MeatCostPerLb() {
       <SEO 
         title="Cost Per Pound & Break-Even Calculator | Rural Utility Cost"
         description="Calculate your exact break-even cost per pound for livestock and determine target sale prices."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Cost Per Pound & Break-Even Calculator",
+          "description": "Calculate your exact break-even cost per pound for livestock and determine target sale prices.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

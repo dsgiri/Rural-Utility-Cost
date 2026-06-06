@@ -34,6 +34,13 @@ export default function HoneyYield() {
       <SEO 
         title="Honey Yield & Revenue Calculator | Rural Utility Cost"
         description="Estimate your apiary's honey production and potential revenue. Adjust for colony survival, winter reserves, and market prices."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Honey Yield & Revenue Calculator",
+          "description": "Estimate your apiary's honey production and potential revenue. Adjust for colony survival, winter reserves, and market prices.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

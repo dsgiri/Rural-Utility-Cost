@@ -50,14 +50,14 @@ export default function Livestock() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Livestock Water Requirements Calculator" 
+        title="Livestock Water Requirements Calculator"
         description="Calculate daily and weekly water needs for farm animals including cattle, horses, pigs, sheep, goats, and chickens."
-        url="/livestock"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Livestock Water Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "@type": "WebApplication",
+          "name": "Livestock Water Requirements Calculator",
+          "description": "Calculate daily and weekly water needs for farm animals including cattle, horses, pigs, sheep, goats, and chickens.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

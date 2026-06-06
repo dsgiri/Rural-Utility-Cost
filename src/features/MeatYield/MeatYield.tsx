@@ -45,6 +45,13 @@ export default function MeatYield() {
       <SEO 
         title="Take-Home Meat Yield Calculator | Rural Utility Cost"
         description="Estimate how much packaged meat you can expect from a live animal or hanging weight for beef and pork."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Take-Home Meat Yield Calculator",
+          "description": "Estimate how much packaged meat you can expect from a live animal or hanging weight for beef and pork.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

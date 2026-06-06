@@ -62,6 +62,13 @@ export default function PainPointPriority() {
       <SEO 
         title="Rural Pain Point Priority Calculator | Rural Utility Cost"
         description="Rank your biggest rural problems by severity, frequency, and impact to determine what to fix first."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Rural Pain Point Priority Calculator",
+          "description": "Rank your biggest rural problems by severity, frequency, and impact to determine what to fix first.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

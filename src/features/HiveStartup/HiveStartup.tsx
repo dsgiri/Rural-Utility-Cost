@@ -40,6 +40,13 @@ export default function HiveStartup() {
       <SEO 
         title="Hive Startup Cost Calculator | Rural Utility Cost"
         description="Estimate the initial cost of starting beekeeping. Plan your budget for hives, bees, tools, and gear."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Hive Startup Cost Calculator",
+          "description": "Estimate the initial cost of starting beekeeping. Plan your budget for hives, bees, tools, and gear.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

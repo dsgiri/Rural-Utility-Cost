@@ -39,6 +39,13 @@ export default function GenFuelCost() {
       <SEO 
         title="Generator Fuel Consumption & Cost Calculator | Rural Utility Cost"
         description="Calculate estimated fuel usage and operating costs for backup generators based on load and runtime."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Generator Fuel Consumption & Cost Calculator",
+          "description": "Calculate estimated fuel usage and operating costs for backup generators based on load and runtime.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

@@ -34,8 +34,15 @@ export default function Fencing() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Fencing Calculator | Rural Utility Cost" 
-        description="Estimate the cost of rural and agricultural fencing, including barbed wire, woven wire, wood, and electric. Calculates material, gates, and labor." 
+        title="Fencing Calculator | Rural Utility Cost"
+        description="Estimate the cost of rural and agricultural fencing, including barbed wire, woven wire, wood, and electric. Calculates material, gates, and labor."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Fencing Calculator",
+          "description": "Estimate the cost of rural and agricultural fencing, including barbed wire, woven wire, wood, and electric. Calculates material, gates, and labor.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

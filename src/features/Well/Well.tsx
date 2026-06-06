@@ -41,14 +41,14 @@ export default function Well() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Well Drilling Cost Calculator" 
+        title="Well Drilling Cost Calculator"
         description="Calculate the cost per foot of drilling a water well based on geological conditions and depth requirements."
-        url="/well"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "WebApplication",
           "name": "Well Drilling Cost Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "description": "Calculate the cost per foot of drilling a water well based on geological conditions and depth requirements.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

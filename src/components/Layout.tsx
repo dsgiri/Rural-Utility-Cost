@@ -7,6 +7,8 @@ import { A11yControls } from './A11yControls';
 
 import { Building2, Banknote, ShieldPlus } from 'lucide-react';
 
+import { Chatbot } from '../features/chatbot';
+
 const navCategories = [
   {
     id: "property",
@@ -301,6 +303,8 @@ export function Layout({ children }: { children: ReactNode }) {
           <span className="text-[10px] text-gray-400 tracking-[0.2em] uppercase">Advertisement</span>
         </div>
       </main>
+
+      <Chatbot />
     </div>
   );
 }

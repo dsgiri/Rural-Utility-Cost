@@ -37,6 +37,13 @@ export default function MeatProcessing() {
       <SEO 
         title="Meat Processing Cost Calculator | Rural Utility Cost"
         description="Estimate butchering and processing costs for livestock based on hanging weight and standard processor fees."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Meat Processing Cost Calculator",
+          "description": "Estimate butchering and processing costs for livestock based on hanging weight and standard processor fees.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

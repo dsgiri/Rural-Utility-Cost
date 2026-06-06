@@ -1,0 +1,11 @@
+{
+  "quickReplies": [
+    { "label": "Utility cost", "intent": "utility_cost" },
+    { "label": "Generator planning", "intent": "generator_planning" },
+    { "label": "Farm costs", "intent": "farm_costs" },
+    { "label": "Water planning", "intent": "water_planning" },
+    { "label": "Fix first", "intent": "pain_point_prioritization" },
+    { "label": "ROI / savings", "intent": "roi_savings" },
+    { "label": "Browse calculators", "intent": "general_browse" }
+  ]
+}

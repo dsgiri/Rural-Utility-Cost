@@ -48,6 +48,13 @@ export default function GenCriticalLoad() {
       <SEO 
         title="Critical Load Backup Power Calculator | Rural Utility Cost"
         description="Verify if your generator and fuel reserves can sustain critical farm and home loads during extended power outages."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Critical Load Backup Power Calculator",
+          "description": "Verify if your generator and fuel reserves can sustain critical farm and home loads during extended power outages.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

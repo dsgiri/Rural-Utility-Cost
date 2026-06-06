@@ -18,12 +18,15 @@ export default function WaterFill() {
     if (zipNum >= 78201 && zipNum <= 78202) baseRate = 0.055;
     if (zipNum >= 75001 && zipNum <= 75003) baseRate = 0.06;
 
+    const g = Math.max(0, gallons);
+    const d = Math.max(0, distance);
+
     const rate = type === 'potable' ? baseRate * 1.5 : baseRate;
-    const delivery = 75 + (2.5 * distance);
-    const waterCost = gallons * rate;
+    const delivery = 75 + (2.5 * d);
+    const waterCost = g * rate;
     const total = waterCost + delivery;
-    const loads = Math.ceil(gallons / 4000);
-    const costPerGal = gallons > 0 ? (total / gallons) : 0;
+    const loads = Math.ceil(g / 4000);
+    const costPerGal = g > 0 ? (total / g) : 0;
 
     // 12 month data projection
     const chartData = Array.from({ length: 12 }).map((_, i) => ({
@@ -39,16 +42,14 @@ export default function WaterFill() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Water Fill Charge Calculator" 
+        title="Water Fill Charge Calculator"
         description="Calculate water delivery cost for rural homes, wells, septic, and pools based on your local ZIP code."
-        url="/"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "WebApplication",
           "name": "Water Fill Charge Calculator",
-          "applicationCategory": "CalculatorApplication",
-          "operatingSystem": "Any",
-          "offers": { "@type": "Offer", "price": "0" }
+          "description": "Calculate water delivery cost for rural homes, wells, septic, and pools based on your local ZIP code.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
 

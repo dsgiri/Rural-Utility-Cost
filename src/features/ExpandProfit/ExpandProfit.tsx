@@ -17,8 +17,15 @@ export default function ExpandProfit() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Expand Profit Calculator | Estimate Revenue Needed for Growth" 
-        description="Estimate how much revenue growth you need to reach your profit goals with this simple business profit expansion calculator." 
+        title="Expand Profit Calculator | Estimate Revenue Needed for Growth"
+        description="Estimate how much revenue growth you need to reach your profit goals with this simple business profit expansion calculator."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Expand Profit Calculator",
+          "description": "Estimate how much revenue growth you need to reach your profit goals with this simple business profit expansion calculator.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

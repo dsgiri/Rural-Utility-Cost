@@ -58,14 +58,14 @@ export default function Solar() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Off-Grid Solar Battery Calculator" 
+        title="Off-Grid Solar Battery Calculator"
         description="Size your off-grid solar panels and battery bank correctly based on appliance wattage, sun hours, and required autonomy."
-        url="/solar"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Solar Battery Sizing Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "@type": "WebApplication",
+          "name": "Off-Grid Solar Battery Calculator",
+          "description": "Size your off-grid solar panels and battery bank correctly based on appliance wattage, sun hours, and required autonomy.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

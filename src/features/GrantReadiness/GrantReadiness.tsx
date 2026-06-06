@@ -52,6 +52,13 @@ export default function GrantReadiness() {
       <SEO 
         title="Grant Readiness & Match Calculator"
         description="Calculate required matching funds and bridging cash flow for reimbursable rural grants like USDA REAP or EQIP."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Grant Readiness & Match Calculator",
+          "description": "Calculate required matching funds and bridging cash flow for reimbursable rural grants like USDA REAP or EQIP.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

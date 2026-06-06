@@ -77,6 +77,13 @@ export default function SyrupMix() {
       <SEO 
         title="Beekeeping Sugar Syrup Mixer | Rural Utility Cost"
         description="Calculate exact sugar and water amounts for feeding bees. Perfect for 1:1 spring syrup or 2:1 fall feeding."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Beekeeping Sugar Syrup Mixer",
+          "description": "Calculate exact sugar and water amounts for feeding bees. Perfect for 1:1 spring syrup or 2:1 fall feeding.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

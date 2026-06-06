@@ -45,6 +45,13 @@ export default function GenRuntime() {
       <SEO 
         title="Generator Runtime Calculator | Rural Utility Cost"
         description="Estimate how long your generator can run on available fuel. Plan for power outages and off-grid backup."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Generator Runtime Calculator",
+          "description": "Estimate how long your generator can run on available fuel. Plan for power outages and off-grid backup.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
 
       <div className="mb-8">

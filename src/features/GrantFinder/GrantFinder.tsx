@@ -90,8 +90,15 @@ export default function GrantFinder() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Government Aid and Grant Finder | Search Funding Options" 
-        description="Find possible government aid, grants, rebates, and funding programs by business type, location, and purpose. No promises, just useful guidance." 
+        title="Government Aid and Grant Finder | Search Funding Options"
+        description="Find possible government aid, grants, rebates, and funding programs by business type, location, and purpose. No promises, just useful guidance."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Government Aid and Grant Finder",
+          "description": "Find possible government aid, grants, rebates, and funding programs by business type, location, and purpose. No promises, just useful guidance.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

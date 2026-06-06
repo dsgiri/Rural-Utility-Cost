@@ -11,8 +11,12 @@ export default function FillDirt() {
   const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
-    const depthInFeet = depthUnit === 'inches' ? depth / 12 : depth;
-    const cubicFeet = length * width * depthInFeet;
+    const l = Math.max(0, length);
+    const w = Math.max(0, width);
+    const d = Math.max(0, depth);
+
+    const depthInFeet = depthUnit === 'inches' ? d / 12 : d;
+    const cubicFeet = l * w * depthInFeet;
     const cubicYards = cubicFeet / 27;
     const tons = cubicYards * 1.4; // Average density of fill dirt
     
@@ -41,14 +45,14 @@ export default function FillDirt() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Fill Dirt Cost & Volume Calculator" 
+        title="Fill Dirt Cost & Volume Calculator"
         description="Calculate cubic yards, tons, and cost of fill dirt required for grading, leveling, and rural construction."
-        url="/fill-dirt"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Fill Dirt Cost Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "@type": "WebApplication",
+          "name": "Fill Dirt Cost & Volume Calculator",
+          "description": "Calculate cubic yards, tons, and cost of fill dirt required for grading, leveling, and rural construction.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

@@ -57,8 +57,15 @@ export default function EnergyDemand() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Energy Demand Calculator | Estimate Peak kW Billing" 
-        description="Calculate peak energy demand charges (kW) based on simultaneous appliance use. See how staggering equipment usage lowers your utility bill." 
+        title="Energy Demand Calculator | Estimate Peak kW Billing"
+        description="Calculate peak energy demand charges (kW) based on simultaneous appliance use. See how staggering equipment usage lowers your utility bill."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Energy Demand Calculator",
+          "description": "Calculate peak energy demand charges (kW) based on simultaneous appliance use. See how staggering equipment usage lowers your utility bill.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

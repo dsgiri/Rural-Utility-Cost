@@ -10,8 +10,12 @@ export default function Gravel() {
   const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
+    const l = Math.max(0, length);
+    const w = Math.max(0, width);
+    const d = Math.max(0, depth);
+
     // formula: L * W * (D/12)
-    const cubicFeet = length * width * (depth / 12);
+    const cubicFeet = l * w * (d / 12);
     const cubicYards = cubicFeet / 27;
     const tons = cubicYards * 1.5; // Gravel is denser than dirt
     
@@ -39,14 +43,14 @@ export default function Gravel() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Gravel Cost Calculator for Driveways" 
+        title="Gravel Cost Calculator for Driveways"
         description="Estimate gravel needed for rural driveways, pathways, and landscaping. Accounts for crushed stone, pea gravel, and river rock."
-        url="/gravel"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Gravel Cost Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "@type": "WebApplication",
+          "name": "Gravel Cost Calculator for Driveways",
+          "description": "Estimate gravel needed for rural driveways, pathways, and landscaping. Accounts for crushed stone, pea gravel, and river rock.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

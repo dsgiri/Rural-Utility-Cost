@@ -63,8 +63,15 @@ export default function Gestation() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Animal Gestation Calculator | Rural Utility Cost" 
-        description="Estimate livestock due dates from breeding or exposure date with a simple animal gestation calculator for cattle, goats, sheep, pigs, horses, and more." 
+        title="Animal Gestation Calculator | Rural Utility Cost"
+        description="Estimate livestock due dates from breeding or exposure date with a simple animal gestation calculator for cattle, goats, sheep, pigs, horses, and more."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Animal Gestation Calculator",
+          "description": "Estimate livestock due dates from breeding or exposure date with a simple animal gestation calculator for cattle, goats, sheep, pigs, horses, and more.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

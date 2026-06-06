@@ -34,14 +34,14 @@ export default function Septic() {
   return (
     <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <SEO 
-        title="Septic Tank Size Calculator" 
+        title="Septic Tank Size Calculator"
         description="Calculate the required septic tank size based on the number of bedrooms and soil type for residential rural properties."
-        url="/septic"
-        schema={{
+        jsonLd={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "WebApplication",
           "name": "Septic Tank Size Calculator",
-          "applicationCategory": "CalculatorApplication"
+          "description": "Calculate the required septic tank size based on the number of bedrooms and soil type for residential rural properties.",
+          "applicationCategory": "UtilitiesApplication"
         }}
       />
       

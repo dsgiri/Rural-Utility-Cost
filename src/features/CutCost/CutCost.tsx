@@ -17,8 +17,15 @@ export default function CutCost() {
   return (
     <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800" id="calculator-content">
       <SEO 
-        title="Cut Cost Calculator | Estimate Savings and Expense Reduction" 
-        description="Estimate how much expense reduction you need to reach your profit goals with this easy cut cost calculator for small businesses." 
+        title="Cut Cost Calculator | Estimate Savings and Expense Reduction"
+        description="Estimate how much expense reduction you need to reach your profit goals with this easy cut cost calculator for small businesses."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Cut Cost Calculator",
+          "description": "Estimate how much expense reduction you need to reach your profit goals with this easy cut cost calculator for small businesses.",
+          "applicationCategory": "UtilitiesApplication"
+        }}
       />
       
       <div className="p-6 md:p-8 flex-grow overflow-y-auto">

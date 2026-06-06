@@ -1,0 +1,170 @@
+{
+  "intents": [
+    {
+      "id": "utility_cost",
+      "label": "Utility cost",
+      "examples": [
+        "My electric bill is too high",
+        "How much does water hauling cost?",
+        "I want to reduce my utility expenses"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "electric-cost-calculator",
+          "title": "Electric Cost Calculator",
+          "reason": "Estimate monthly or yearly power cost.",
+          "url": "/power"
+        },
+        {
+          "id": "utility-savings-calculator",
+          "title": "Utility Savings Calculator",
+          "reason": "Compare current vs improved utility costs.",
+          "url": "/savings"
+        },
+        {
+          "id": "water-hauling-cost-calculator",
+          "title": "Water Hauling Cost Calculator",
+          "reason": "Estimate the cost of hauling water.",
+          "url": "/water-hauling"
+        }
+      ]
+    },
+    {
+      "id": "generator_planning",
+      "label": "Generator planning",
+      "examples": [
+        "How long will my generator run?",
+        "What does it cost to run a generator?",
+        "Is this generator big enough?"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "generator-runtime-calculator",
+          "title": "Generator Runtime Calculator",
+          "reason": "Estimate how long a generator will run.",
+          "url": "/gen-runtime"
+        },
+        {
+          "id": "generator-fuel-cost-calculator",
+          "title": "Generator Fuel Cost Calculator",
+          "reason": "Estimate fuel expense over time.",
+          "url": "/gen-fuel-cost"
+        },
+        {
+          "id": "generator-sizing-calculator",
+          "title": "Critical Load Backup Calculator",
+          "reason": "Check whether your baseline setup is enough.",
+          "url": "/gen-critical-load"
+        }
+      ]
+    },
+    {
+      "id": "farm_costs",
+      "label": "Farm costs",
+      "examples": [
+        "Feed costs are killing me",
+        "How much does it cost to raise livestock?",
+        "I need to budget farm expenses"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "feed-cost-calculator",
+          "title": "Livestock Water Calculator",
+          "reason": "Estimate water spending and usage for animals.",
+          "url": "/livestock"
+        },
+        {
+          "id": "fencing-cost-calculator",
+          "title": "Fencing Cost Calculator",
+          "reason": "Estimate livestock fencing costs.",
+          "url": "/fencing"
+        }
+      ]
+    },
+    {
+      "id": "water_planning",
+      "label": "Water planning",
+      "examples": [
+        "How much water do I need?",
+        "I haul water every week",
+        "What does rural water cost?"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "water-usage-calculator",
+          "title": "Water Fill Charge",
+          "reason": "Estimate the cost of hauling water.",
+          "url": "/water-fill"
+        },
+        {
+          "id": "well-water-drilling",
+          "title": "Well Water Drilling",
+          "reason": "Estimate rural well drilling expense.",
+          "url": "/well"
+        }
+      ]
+    },
+    {
+      "id": "pain_point_prioritization",
+      "label": "Fix first / prioritize",
+      "examples": [
+        "What should I fix first?",
+        "Help me rank my problems",
+        "Which issue is the biggest pain point?"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "pain-point-calculator",
+          "title": "Pain Point Priority Calculator",
+          "reason": "Rank rural problems by pain and effort to fix.",
+          "url": "/pain-point-priority"
+        }
+      ]
+    },
+    {
+      "id": "roi_savings",
+      "label": "ROI / savings",
+      "examples": [
+        "Is this worth buying?",
+        "When will it pay for itself?",
+        "How much will I save?"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "roi-calculator",
+          "title": "ROI Calculator",
+          "reason": "Estimate return on investment.",
+          "url": "/roi"
+        },
+        {
+          "id": "payback-calculator",
+          "title": "Payback Calculator",
+          "reason": "See how long it takes to break even.",
+          "url": "/payback"
+        },
+        {
+          "id": "savings-calculator",
+          "title": "Savings Calculator",
+          "reason": "Compare current vs proposed cost.",
+          "url": "/savings"
+        }
+      ]
+    },
+    {
+      "id": "conversion_goal",
+      "label": "Conversion goal",
+      "examples": [
+        "How many visitors do I need?",
+        "How many leads to hit my goal?",
+        "What conversion rate do I need?"
+      ],
+      "recommended_calculators": []
+    }
+  ],
+  "fallback": {
+    "id": "calculator-directory",
+    "title": "Browse All Calculators",
+    "reason": "Not sure yet? Browse the full calculator library.",
+    "url": "/"
+  }
+}
