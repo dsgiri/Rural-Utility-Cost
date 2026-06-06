@@ -530,6 +530,21 @@ export default function FoodProcessingCompliance() {
             </div>
           </div>
 
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Build Your Rural Business Plan</h3>
+            <p className="text-gray-600 mb-4">
+              Find matching grants, calculate expansion ROI, and ensure food processing compliance.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="/agribusiness" className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                Return to Agribusiness Hub
+              </a>
+              <a href="/expand-profit" className="inline-flex items-center text-emerald-600 font-medium hover:text-emerald-700">
+                Calculate Expansion Profit →
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

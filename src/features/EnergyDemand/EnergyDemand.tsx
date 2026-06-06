@@ -195,6 +195,24 @@ export default function EnergyDemand() {
                 </p>
               </div>
 
+              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 print:hidden">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-2">Plan Your Grid Independence</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                  Knowing your peak load is step one for sizing off-grid and backup power systems.
+                </p>
+                <div className="flex flex-col gap-2">
+                  <a href="/solar" className="inline-flex items-center text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-[#6ee7b7]">
+                    Calculate Solar & Battery Needs →
+                  </a>
+                  <a href="/gen-critical-load" className="inline-flex items-center text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-[#6ee7b7]">
+                    Size a Backup Generator →
+                  </a>
+                  <a href="/utility-cost" className="inline-flex items-center text-xs font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white mt-2">
+                    View All Energy Tools
+                  </a>
+                </div>
+              </div>
+
               <ExportActions 
                 title="Energy Demand Peak"
                 data={{

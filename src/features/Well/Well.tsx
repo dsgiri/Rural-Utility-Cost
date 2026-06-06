@@ -122,6 +122,21 @@ export default function Well() {
           </div>
         </div>
 
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8 mt-2 print:hidden">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Build Your Full Water Plan</h3>
+          <p className="text-gray-600 mb-4">
+            If you are drilling a new well, you will likely need a septic system for wastewater. Ensure your budget accounts for both.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="/water-planning" className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+              Return to Water Planning Hub
+            </a>
+            <a href="/septic" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
+              Calculate Septic Tank Size & Cost →
+            </a>
+          </div>
+        </div>
+
         <ExportActions 
           title="Well Drilling Cost Calculator" 
           targetRef={resultRef}

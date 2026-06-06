@@ -130,6 +130,21 @@ export default function Septic() {
           }}
         />
 
+        <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Build Your Full Water Plan</h3>
+          <p className="text-gray-600 mb-4">
+            If you are installing a new septic system, you usually need a well system. Explore our water planning tools.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="/water-planning" className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+              Return to Water Planning Hub
+            </a>
+            <a href="/well" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
+              Calculate Well Drilling Cost →
+            </a>
+          </div>
+        </div>
+
         {/* SEO SNIPPET / HOW IT WORKS */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mt-4">
           <h3 className="flex items-center gap-2 text-base font-bold text-gray-900 mb-4">

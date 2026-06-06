@@ -35,6 +35,7 @@ import UtilityCostHub from './pages/UtilityCostHub';
 import WaterPlanningHub from './pages/WaterPlanningHub';
 import FarmCostsHub from './pages/FarmCostsHub';
 import LandConstructionHub from './pages/LandConstructionHub';
+import AgribusinessHub from './pages/AgribusinessHub';
 import HiveStartup from './features/HiveStartup/HiveStartup';
 import HoneyYield from './features/HoneyYield/HoneyYield';
 import SyrupMix from './features/SyrupMix/SyrupMix';
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/water-planning" element={<WaterPlanningHub />} />
           <Route path="/farm-costs" element={<FarmCostsHub />} />
           <Route path="/land-and-construction" element={<LandConstructionHub />} />
+          <Route path="/agribusiness" element={<AgribusinessHub />} />
           <Route path="/water-fill" element={<WaterFill />} />
           <Route path="/septic" element={<Septic />} />
           <Route path="/fill-dirt" element={<FillDirt />} />

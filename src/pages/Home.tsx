@@ -117,6 +117,16 @@ const calculatorCategories = [
         border: 'border-stone-100',
       },
       {
+        path: '/agribusiness',
+        title: 'Agribusiness & Grants Hub',
+        desc: 'Assess your grant readiness, find USDA funding, calculate expansion profits, and check food processing compliance.',
+        icon: Landmark,
+        features: ['Grant Finder', 'Grant Readiness Check', 'Profit Calculators', 'Food Compliance'],
+        color: 'text-rose-600',
+        bg: 'bg-rose-50',
+        border: 'border-rose-100',
+      },
+      {
         path: '/generator-planning',
         title: 'Generator Planning Hub',
         desc: 'Everything you need to size, budget, and plan for backup power on a rural property.',
