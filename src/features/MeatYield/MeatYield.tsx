@@ -24,7 +24,7 @@ export default function MeatYield() {
   };
 
   // Math Setup
-  const liveWeight = weightBasis === 'Live' ? weight : (weight / (dressingPct / 100));
+  const liveWeight = weightBasis === 'Live' ? weight : (weight / Math.max(0.01, (dressingPct / 100)));
   const hangingWeight = weightBasis === 'Live' ? weight * (dressingPct / 100) : weight;
   
   const postShrinkWeight = hangingWeight * (1 - (shrinkPct / 100));

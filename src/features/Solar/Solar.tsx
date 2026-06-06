@@ -41,7 +41,7 @@ export default function Solar() {
     });
 
     const batteryKwh = (dailyWh * autonomy * 1.2) / (1000 * 0.5);
-    const solarWatts = dailyWh / (sunHours * 0.75);
+    const solarWatts = dailyWh / Math.max(0.1, sunHours * 0.75);
     const panels = Math.ceil(solarWatts / 400);
     const cost = (batteryKwh * 350) + (solarWatts * 2.50);
 

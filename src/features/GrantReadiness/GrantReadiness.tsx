@@ -32,7 +32,7 @@ export default function GrantReadiness() {
   // --- Calculations: Tab 2 (Reimbursable Pipeline) ---
   const eligibleCost2 = totalCost2;
   const totalGrantAvailable = eligibleCost2 * (grantPercent2 / 100);
-  const costPerPhase = eligibleCost2 / phases;
+  const costPerPhase = phases > 0 ? eligibleCost2 / phases : 0;
   
   // They spend costPerPhase. Then they get reimbursed (grantPercent2) for that phase. 
   // Max float (cash needed to bridge) is the highest amount they are out-of-pocket at any one time.
