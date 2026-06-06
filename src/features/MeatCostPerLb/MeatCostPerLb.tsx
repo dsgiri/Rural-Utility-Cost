@@ -182,6 +182,21 @@ export default function MeatCostPerLb() {
               </div>
             </div>
 
+            <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Build Your Full Farm Budget</h3>
+              <p className="text-gray-600 mb-4">
+                Calculate livestock feed budgets, monitor breeding dates, and track your agricultural startup costs.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="/farm-costs" className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                  Return to Farm & Livestock Hub
+                </a>
+                <a href="/livestock" className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700">
+                  Calculate Feed Costs →
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 

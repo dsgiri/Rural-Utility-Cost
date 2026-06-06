@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
+import { Tractor, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
 
 const calculatorCategories = [
   {
@@ -95,6 +95,26 @@ const calculatorCategories = [
         color: 'text-cyan-600',
         bg: 'bg-cyan-50',
         border: 'border-cyan-100',
+      },
+      {
+        path: '/farm-costs',
+        title: 'Farm & Livestock Hub',
+        desc: 'Make data-driven decisions on the farm. Budget for feed costs, track yields, and manage breeding schedules.',
+        icon: Tractor,
+        features: ['Livestock feed budgets', 'Meat yield & cost', 'Beekeeping startup', 'Gestation tracking'],
+        color: 'text-amber-600',
+        bg: 'bg-amber-50',
+        border: 'border-amber-100',
+      },
+      {
+        path: '/land-and-construction',
+        title: 'Land & Construction Hub',
+        desc: 'Tools for property development. Calculate budgets for fencing, dirt, gravel, and land purchases.',
+        icon: Truck,
+        features: ['Fill dirt calculator', 'Gravel volumes', 'Fencing estimator', 'Rural land valuation'],
+        color: 'text-stone-600',
+        bg: 'bg-stone-50',
+        border: 'border-stone-100',
       },
       {
         path: '/generator-planning',

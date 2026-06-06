@@ -497,6 +497,21 @@ export default function RuralLand() {
             </div>
           </div>
 
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Build Your Full Land Plan</h3>
+            <p className="text-gray-600 mb-4">
+              Determine your complete property operating and construction costs.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="/land-and-construction" className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                Return to Land & Construction Hub
+              </a>
+              <a href="/fencing" className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700">
+                Estimate Fencing Cost →
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">Understanding Rural Land Value</h2>
             
