@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode } from 'react';
+import { Logo } from './Logo';
 
 const navItems = [
   { path: '/', label: 'Home Dashboard', icon: HomeIcon },
@@ -20,10 +21,11 @@ export function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gray-50 font-sans">
+    <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gray-50 font-sans print:h-auto print:overflow-visible print:bg-white">
       {/* SIDEBAR NAVIGATION (Desktop) */}
-      <nav className="w-64 bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col">
-        <div className="p-6 border-b border-white/10">
+      <nav className="w-64 bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col print:hidden">
+        <div className="p-6 border-b border-white/10 flex items-center gap-3">
+          <Logo className="w-10 h-10 text-white" />
           <h1 className="text-xl font-bold leading-tight">
             Rural Utility<br/>
             <span className="text-green-300">Cost.com</span>
@@ -59,13 +61,13 @@ export function Layout({ children }: { children: ReactNode }) {
       </nav>
 
       {/* Main Content Area */}
-      <main className="flex-grow flex flex-col min-w-0 max-h-screen overflow-hidden">
+      <main className="flex-grow flex flex-col min-w-0 max-h-screen overflow-hidden print:max-h-none print:overflow-visible">
         {/* HEADER */}
-        <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 sm:px-8 flex-shrink-0 z-10 w-full relative">
+        <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 sm:px-8 flex-shrink-0 z-10 w-full relative print:hidden">
           <div className="md:hidden flex items-center">
             {/* Mobile simplified header/link */}
             <Link to="/" className="font-bold text-lg text-gray-900 flex items-center gap-2">
-               <LayoutGrid className="h-5 w-5 text-[#1a5f3f]" />
+               <Logo className="h-6 w-6 text-[#1a5f3f]" />
                Rural Costs
             </Link>
           </div>
@@ -83,7 +85,12 @@ export function Layout({ children }: { children: ReactNode }) {
         </header>
 
         {/* Mobile Nav (Scrollable horizontal) */}
-        <div className="md:hidden bg-white border-b border-gray-200 overflow-x-auto flex-shrink-0 z-10 relative">
+        <style>{`
+          .hide-scroll::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+        <div className="md:hidden bg-white border-b border-gray-200 overflow-x-auto flex-shrink-0 z-10 relative hide-scroll print:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <nav className="flex px-4 py-2 space-x-2">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -108,12 +115,12 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
 
         {/* CONTENT CONTAINER */}
-        <div className="flex-grow overflow-y-auto">
+        <div className="flex-grow overflow-y-auto print:overflow-visible">
           {children}
         </div>
         
         {/* AD SPACE (ADSENSE OPTIMIZED) */}
-        <div className="h-16 bg-gray-200 flex-shrink-0 flex items-center justify-center border-t border-gray-300">
+        <div className="h-16 bg-gray-200 flex-shrink-0 flex items-center justify-center border-t border-gray-300 print:hidden">
           <span className="text-[10px] text-gray-400 tracking-[0.2em] uppercase">Advertisement</span>
         </div>
       </main>

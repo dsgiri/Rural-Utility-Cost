@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Well() {
   const [depth, setDepth] = useState(250);
   const [soil, setSoil] = useState('medium');
   const [region, setRegion] = useState('average');
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     let rate = 30;
@@ -82,41 +84,57 @@ export default function Well() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Estimated Drilling Rate</p>
-            <p className="text-4xl font-black text-white">${results.ratePerFoot} <span className="text-lg font-bold opacity-80">/ ft</span></p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Estimated Drilling Rate</p>
+              <p className="text-4xl font-black text-white">${results.ratePerFoot} <span className="text-lg font-bold opacity-80">/ ft</span></p>
+            </div>
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Total System Estimate</p>
+              <p className="text-2xl font-black text-[#1a5f3f]">${results.totalCost.toLocaleString()}</p>
+            </div>
           </div>
-          <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Total System Estimate</p>
-            <p className="text-2xl font-black text-[#1a5f3f]">${results.totalCost.toLocaleString()}</p>
-          </div>
-        </div>
 
-        {/* DETAILS PANEL */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Investment Breakdown</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <ul className="space-y-4 flex flex-col justify-center">
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Drilling & Steel Casing</span>
-                <span className="font-bold text-gray-900">${results.drillingCost.toLocaleString()}</span>
-              </li>
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Pump & Electrical</span>
-                <span className="font-bold text-gray-900">${results.pumpCost.toLocaleString()}</span>
-              </li>
-              <li className="flex items-center justify-between text-lg pt-3 border-t border-gray-100 font-bold">
-                <span className="text-gray-800">Total Build Cost</span>
-                <span className="text-[#1a5f3f]">${results.totalCost.toLocaleString()}</span>
-              </li>
-            </ul>
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-xs text-yellow-800 leading-relaxed flex flex-col justify-center">
-              <strong>⚠️ Dry Hole Warning:</strong> Drillers charge per foot drilled regardless of whether aquifer deposits were found. You will still owe the drilling portion of the invoice even if no water is hit.
+          {/* DETAILS PANEL */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Investment Breakdown</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ul className="space-y-4 flex flex-col justify-center">
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Drilling & Steel Casing</span>
+                  <span className="font-bold text-gray-900">${results.drillingCost.toLocaleString()}</span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Pump & Electrical</span>
+                  <span className="font-bold text-gray-900">${results.pumpCost.toLocaleString()}</span>
+                </li>
+                <li className="flex items-center justify-between text-lg pt-3 border-t border-gray-100 font-bold">
+                  <span className="text-gray-800">Total Build Cost</span>
+                  <span className="text-[#1a5f3f]">${results.totalCost.toLocaleString()}</span>
+                </li>
+              </ul>
+              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-xs text-yellow-800 leading-relaxed flex flex-col justify-center">
+                <strong>⚠️ Dry Hole Warning:</strong> Drillers charge per foot drilled regardless of whether aquifer deposits were found. You will still owe the drilling portion of the invoice even if no water is hit.
+              </div>
             </div>
           </div>
         </div>
+
+        <ExportActions 
+          title="Well Drilling Cost Calculator" 
+          targetRef={resultRef}
+          data={{
+            'Depth (ft)': depth,
+            'Geology / Soil Type': soil.toUpperCase(),
+            'Regional Cost Level': region.toUpperCase(),
+            'Estimated Rate per Foot': `$${results.ratePerFoot}`,
+            'Drilling & Casing Cost': `$${results.drillingCost.toLocaleString()}`,
+            'Pump & Electrical Cost': `$${results.pumpCost.toLocaleString()}`,
+            'Total Estimate': `$${results.totalCost.toLocaleString()}`
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8">

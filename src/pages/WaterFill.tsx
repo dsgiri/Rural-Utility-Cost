@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { ExportActions } from '../components/ExportActions';
 
 export default function WaterFill() {
   const [zip, setZip] = useState('');
   const [gallons, setGallons] = useState(1000);
   const [type, setType] = useState('standard');
   const [distance, setDistance] = useState(10);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     let baseRate = 0.06;
@@ -89,67 +91,84 @@ export default function WaterFill() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Total Estimate</p>
-            <p className="text-2xl font-black text-[#1a5f3f]">${results.total.toFixed(2)}</p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Total Estimate</p>
+              <p className="text-2xl font-black text-[#1a5f3f]">${results.total.toFixed(2)}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Per Gallon</p>
+              <p className="text-2xl font-black text-gray-800">${results.costPerGal.toFixed(3)}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Truckloads</p>
+              <p className="text-2xl font-black text-gray-800">{results.loads} Loads</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Delivery Fee</p>
+              <p className="text-2xl font-black text-gray-800">${results.delivery.toFixed(2)}</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Per Gallon</p>
-            <p className="text-2xl font-black text-gray-800">${results.costPerGal.toFixed(3)}</p>
-          </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Truckloads</p>
-            <p className="text-2xl font-black text-gray-800">{results.loads} Loads</p>
-          </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Delivery Fee</p>
-            <p className="text-2xl font-black text-gray-800">${results.delivery.toFixed(2)}</p>
+
+          {/* CHART & BREAKDOWN */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-0 print:grid-cols-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col">
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">12-Month Projection</h3>
+              <div className="h-48 w-full flex-grow">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={results.chartData}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                    <XAxis dataKey="month" hide />
+                    <YAxis fontSize={10} width={40} tickFormatter={(v) => `$${v}`} tickLine={false} axisLine={false} />
+                    <Tooltip formatter={(value: number) => [`$${value}`, 'Monthly Cost']} cursor={{fill: 'transparent'}} />
+                    <Bar dataKey="cost" fill="#1a5f3f" radius={[4, 4, 0, 0]} opacity={0.8} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex justify-between text-[8px] text-gray-400 pt-2 border-t border-gray-100 mt-2">
+                <span>JAN</span><span>MAR</span><span>JUN</span><span>SEP</span><span>DEC</span>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3">Cost Factors Analysis</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center justify-between text-xs">
+                  <span className="text-gray-600 italic">Water Supply Cost</span>
+                  <span className="font-bold">${results.waterCost.toFixed(2)}</span>
+                </li>
+                <li className="flex items-center justify-between text-xs">
+                  <span className="text-gray-600 italic">Base Dispatch + Mileage</span>
+                  <span className="font-bold">${results.delivery.toFixed(2)}</span>
+                </li>
+                <li className="pt-2 border-t border-gray-100 flex items-center justify-between text-sm font-black">
+                  <span className="text-[#1a5f3f]">TOTAL</span>
+                  <span className="text-[#1a5f3f]">${results.total.toFixed(2)}</span>
+                </li>
+              </ul>
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded text-[10px] text-blue-700 leading-normal">
+                <strong>💡 Pro Tip:</strong> Standard water hauling trucks hold around 4,000 gallons. Ordering slightly over this limit triggers the need for a second truck, duplicating the base delivery fee.
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* CHART & BREAKDOWN */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-0">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col">
-            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">12-Month Projection</h3>
-            <div className="h-48 w-full flex-grow">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={results.chartData}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
-                  <XAxis dataKey="month" hide />
-                  <YAxis fontSize={10} width={40} tickFormatter={(v) => `$${v}`} tickLine={false} axisLine={false} />
-                  <Tooltip formatter={(value: number) => [`$${value}`, 'Monthly Cost']} cursor={{fill: 'transparent'}} />
-                  <Bar dataKey="cost" fill="#1a5f3f" radius={[4, 4, 0, 0]} opacity={0.8} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="flex justify-between text-[8px] text-gray-400 pt-2 border-t border-gray-100 mt-2">
-              <span>JAN</span><span>MAR</span><span>JUN</span><span>SEP</span><span>DEC</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3">Cost Factors Analysis</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center justify-between text-xs">
-                <span className="text-gray-600 italic">Water Supply Cost</span>
-                <span className="font-bold">${results.waterCost.toFixed(2)}</span>
-              </li>
-              <li className="flex items-center justify-between text-xs">
-                <span className="text-gray-600 italic">Base Dispatch + Mileage</span>
-                <span className="font-bold">${results.delivery.toFixed(2)}</span>
-              </li>
-              <li className="pt-2 border-t border-gray-100 flex items-center justify-between text-sm font-black">
-                <span className="text-[#1a5f3f]">TOTAL</span>
-                <span className="text-[#1a5f3f]">${results.total.toFixed(2)}</span>
-              </li>
-            </ul>
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded text-[10px] text-blue-700 leading-normal">
-              <strong>💡 Pro Tip:</strong> Standard water hauling trucks hold around 4,000 gallons. Ordering slightly over this limit triggers the need for a second truck, duplicating the base delivery fee.
-            </div>
-          </div>
-        </div>
+        <ExportActions 
+          title="Water Fill Charge Calculator" 
+          targetRef={resultRef}
+          data={{
+            'ZIP Code': zip || 'N/A',
+            'Water Volume (Gallons)': `${gallons.toLocaleString()}`,
+            'Type': type.toUpperCase(),
+            'Distance (Miles)': distance,
+            'Total Estimate': `$${results.total.toFixed(2)}`,
+            'Cost Per Gallon': `$${results.costPerGal.toFixed(3)}`,
+            'Delivery Fee': `$${results.delivery.toFixed(2)}`,
+            'Truckloads Required': results.loads
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8">

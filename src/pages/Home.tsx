@@ -111,11 +111,11 @@ export default function Home() {
       />
       
       {/* HERO SECTION */}
-      <section className="bg-gradient-to-br from-[#1a5f3f] to-[#144a30] text-white py-16 px-6 sm:px-12 text-center rounded-b-3xl shadow-lg relative overflow-hidden flex-shrink-0">
+      <section className="bg-gradient-to-br from-[#1a5f3f] to-[#144a30] text-white py-10 px-6 sm:px-12 text-center rounded-b-3xl shadow-lg relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-5xl font-black mb-4 tracking-tight">Calculate Rural Utility<br/>Costs Instantly.</h1>
-          <p className="text-lg sm:text-xl text-green-100 max-w-2xl mx-auto mb-8 font-medium">
+          <h1 className="text-3xl sm:text-4xl font-black mb-4 tracking-tight">Calculate Rural Utility<br/>Costs Instantly.</h1>
+          <p className="text-base sm:text-lg text-green-100 max-w-2xl mx-auto mb-6 font-medium">
             Stop guessing. Get accurate, data-driven estimates for land development, homesteading, and off-grid rural living.
           </p>
           <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium border border-white/20 backdrop-blur-sm shadow-inner">
@@ -125,8 +125,8 @@ export default function Home() {
       </section>
 
       {/* CALCULATOR GRID */}
-      <section className="px-4 py-12 max-w-7xl mx-auto w-full flex-grow">
-        <div className="text-center mb-10">
+      <section className="px-4 py-8 max-w-7xl mx-auto w-full flex-grow">
+        <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-tight">Our Calculation Tools</h2>
           <div className="h-1 w-16 bg-[#1a5f3f] mx-auto mt-3 rounded-full"></div>
         </div>
@@ -156,7 +156,7 @@ export default function Home() {
                     ))}
                   </ul>
                   
-                  <div className="mt-auto flex items-center justify-between text-sm font-bold text-[#1a5f3f] group-hover:text-[#154d32] transition-colors bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div className="mt-auto flex items-center justify-between text-sm font-bold text-white bg-[#1a5f3f] group-hover:bg-[#154d32] transition-colors p-3.5 rounded-xl uppercase tracking-wider shadow-sm">
                     <span>Calculate Now</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>

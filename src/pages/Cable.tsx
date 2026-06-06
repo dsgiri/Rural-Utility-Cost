@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Cable() {
   const [zip, setZip] = useState('76001');
   const [tvs, setTvs] = useState(2);
   const [bundleInternet, setBundleInternet] = useState(false);
   const [sports, setSports] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     // Determine provider availability based on ZIP prefix
@@ -103,74 +105,90 @@ export default function Cable() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex justify-between items-center text-left">
-            <div>
-              <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Lowest Cost Winner</p>
-              <p className="text-2xl font-black text-white">{results.bestValue.name}</p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex justify-between items-center text-left">
+              <div>
+                <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Lowest Cost Winner</p>
+                <p className="text-2xl font-black text-white">{results.bestValue.name}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-3xl font-black text-white">${results.bestValue.price}</p>
+                <p className="text-xs font-bold text-green-200">/ MO</p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="text-3xl font-black text-white">${results.bestValue.price}</p>
-              <p className="text-xs font-bold text-green-200">/ MO</p>
+            
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Annual Savings (vs Avg)</p>
+              <p className="text-2xl font-black text-[#1a5f3f]">
+                ${Math.max(0, (140 - results.bestValue.price) * 12).toLocaleString()} / YEAR
+              </p>
             </div>
           </div>
-          
-          <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Annual Savings (vs Avg)</p>
-            <p className="text-2xl font-black text-[#1a5f3f]">
-              ${Math.max(0, (140 - results.bestValue.price) * 12).toLocaleString()} / YEAR
-            </p>
+
+          {/* DETAILS & GRAPH PANEL */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 min-h-0 items-start">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 overflow-x-auto">
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Pricing Map</h3>
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-gray-100 text-gray-500">
+                    <th className="pb-2 font-semibold">Provider</th>
+                    <th className="pb-2 font-semibold text-center">Upfront Fees</th>
+                    <th className="pb-2 font-semibold text-right">Mthly Rate</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {results.availableOptions.map((opt) => (
+                    <tr key={opt.id}>
+                      <td className="py-3 font-semibold text-gray-900">
+                        {opt.name}
+                        {opt.id === results.bestValue.id && <span className="ml-2 text-[9px] bg-green-100 text-green-800 px-1 py-0.5 rounded uppercase">Best Deal</span>}
+                      </td>
+                      <td className="py-3 text-center text-gray-500 text-[10px]">${opt.install} Install</td>
+                      <td className="py-3 text-right font-bold text-gray-800">${opt.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
+              {tvs > 3 && (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded text-[10px] text-blue-700 leading-normal">
+                  <strong>📺 Hidden Hardware Fees:</strong> Wiring 4+ receivers via Satellite or Cable forces heavy monthly rental fees. Streaming bypasses receiver rentals entirely via Smart TVs.
+                </div>
+              )}
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col h-full">
+               <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Available Channel Volume</h3>
+               <div className="w-full flex-grow min-h-[160px]">
+                 <ResponsiveContainer width="100%" height="100%">
+                   <BarChart data={results.chartData} layout="vertical" margin={{ left: 0, right: 10, top: 0, bottom: 0 }}>
+                     <XAxis type="number" hide />
+                     <YAxis dataKey="name" type="category" width={80} fontSize={9} tickLine={false} axisLine={false} />
+                     <Tooltip formatter={(value: number) => [`${value} Channels`, 'Count']} cursor={{fill: 'transparent'}} />
+                     <Bar dataKey="Channels" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.6} />
+                   </BarChart>
+                 </ResponsiveContainer>
+               </div>
+            </div>
           </div>
         </div>
 
-        {/* DETAILS & GRAPH PANEL */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 min-h-0 items-start">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 overflow-x-auto">
-            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Pricing Map</h3>
-            <table className="w-full text-left text-xs">
-              <thead>
-                <tr className="border-b border-gray-100 text-gray-500">
-                  <th className="pb-2 font-semibold">Provider</th>
-                  <th className="pb-2 font-semibold text-center">Upfront Fees</th>
-                  <th className="pb-2 font-semibold text-right">Mthly Rate</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {results.availableOptions.map((opt) => (
-                  <tr key={opt.id}>
-                    <td className="py-3 font-semibold text-gray-900">
-                      {opt.name}
-                      {opt.id === results.bestValue.id && <span className="ml-2 text-[9px] bg-green-100 text-green-800 px-1 py-0.5 rounded uppercase">Best Deal</span>}
-                    </td>
-                    <td className="py-3 text-center text-gray-500 text-[10px]">${opt.install} Install</td>
-                    <td className="py-3 text-right font-bold text-gray-800">${opt.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            
-            {tvs > 3 && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded text-[10px] text-blue-700 leading-normal">
-                <strong>📺 Hidden Hardware Fees:</strong> Wiring 4+ receivers via Satellite or Cable forces heavy monthly rental fees. Streaming bypasses receiver rentals entirely via Smart TVs.
-              </div>
-            )}
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col h-full">
-             <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Available Channel Volume</h3>
-             <div className="w-full flex-grow min-h-[160px]">
-               <ResponsiveContainer width="100%" height="100%">
-                 <BarChart data={results.chartData} layout="vertical" margin={{ left: 0, right: 10, top: 0, bottom: 0 }}>
-                   <XAxis type="number" hide />
-                   <YAxis dataKey="name" type="category" width={80} fontSize={9} tickLine={false} axisLine={false} />
-                   <Tooltip formatter={(value: number) => [`${value} Channels`, 'Count']} cursor={{fill: 'transparent'}} />
-                   <Bar dataKey="Channels" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.6} />
-                 </BarChart>
-               </ResponsiveContainer>
-             </div>
-          </div>
-        </div>
+        <ExportActions 
+          title="Cable TV Cost Calculator" 
+          targetRef={resultRef}
+          data={{
+            'ZIP Code': zip || 'N/A',
+            'Number of TVs': tvs,
+            'Premium Sports': sports ? 'Yes' : 'No',
+            'Bundle Internet': bundleInternet ? 'Yes' : 'No',
+            'Lowest Cost Winner': results.bestValue.name,
+            'Monthly Cost': `$${results.bestValue.price}`,
+            'Annual Savings vs Avg ($140/mo)': `$${Math.max(0, (140 - results.bestValue.price) * 12).toLocaleString()}`
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8 mt-auto">

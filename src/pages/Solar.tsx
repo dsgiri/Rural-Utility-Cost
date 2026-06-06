@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { PlusCircle, Trash2 } from 'lucide-react';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Solar() {
   const [zip, setZip] = useState('');
@@ -9,6 +10,7 @@ export default function Solar() {
   const [appliances, setAppliances] = useState([
     { name: 'Refrigerator', watts: 150, hours: 24 }
   ]);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const addAppliance = () => {
     setAppliances([...appliances, { name: 'New Appliance', watts: 100, hours: 4 }]);
@@ -114,55 +116,70 @@ export default function Solar() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-6 xl:col-span-7 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          <div className="bg-[#1a5f3f] p-4 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-green-200 uppercase">Array Sizing</p>
-            <p className="text-2xl font-black text-white">{results.panels} <span className="text-xs font-normal text-green-100">Panels</span></p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="bg-[#1a5f3f] p-4 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-green-200 uppercase">Array Sizing</p>
+              <p className="text-2xl font-black text-white">{results.panels} <span className="text-xs font-normal text-green-100">Panels</span></p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Battery Target</p>
+              <p className="text-2xl font-black text-gray-800">{results.batteryKwh} <span className="text-xs font-normal text-gray-500">kWh</span></p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center sm:col-span-1 col-span-2">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Est. Hard Cost</p>
+              <p className="text-2xl font-black text-gray-800">${results.cost.toLocaleString()}</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Battery Target</p>
-            <p className="text-2xl font-black text-gray-800">{results.batteryKwh} <span className="text-xs font-normal text-gray-500">kWh</span></p>
-          </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center sm:col-span-1 col-span-2">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Est. Hard Cost</p>
-            <p className="text-2xl font-black text-gray-800">${results.cost.toLocaleString()}</p>
+
+          {/* DETAILS & GRAPH PANEL */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Hardware Sizing Logic</h3>
+              <ul className="space-y-4 flex flex-col justify-center">
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Daily Demand Limit</span>
+                  <span className="font-bold text-gray-900">{results.dailyWh.toLocaleString()} Wh</span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Battery Capacity Factor</span>
+                  <span className="font-bold text-gray-900">50% DoD (Lead)</span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Inverter Loss Blanket</span>
+                  <span className="font-bold text-gray-900">+20% Overhead</span>
+                </li>
+              </ul>
+            </div>
+            <div className="h-full flex flex-col">
+               <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Load Distribution</h3>
+               <div className="w-full flex-grow min-h-[140px]">
+                 <ResponsiveContainer width="100%" height="100%">
+                   <BarChart data={results.breakdownChart} layout="vertical" margin={{ left: 20, right: 10, top: 0, bottom: 0 }}>
+                     <XAxis type="number" hide />
+                     <YAxis dataKey="name" type="category" width={70} fontSize={9} tickLine={false} axisLine={false} />
+                     <Tooltip formatter={(value: number) => [`${value} Wh`, 'Daily Load']} cursor={{fill: 'transparent'}} />
+                     <Bar dataKey="Wh" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.9} />
+                   </BarChart>
+                 </ResponsiveContainer>
+               </div>
+            </div>
           </div>
         </div>
 
-        {/* DETAILS & GRAPH PANEL */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <div>
-            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Hardware Sizing Logic</h3>
-            <ul className="space-y-4 flex flex-col justify-center">
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Daily Demand Limit</span>
-                <span className="font-bold text-gray-900">{results.dailyWh.toLocaleString()} Wh</span>
-              </li>
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Battery Capacity Factor</span>
-                <span className="font-bold text-gray-900">50% DoD (Lead)</span>
-              </li>
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Inverter Loss Blanket</span>
-                <span className="font-bold text-gray-900">+20% Overhead</span>
-              </li>
-            </ul>
-          </div>
-          <div className="h-full flex flex-col">
-             <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Load Distribution</h3>
-             <div className="w-full flex-grow min-h-[140px]">
-               <ResponsiveContainer width="100%" height="100%">
-                 <BarChart data={results.breakdownChart} layout="vertical" margin={{ left: 20, right: 10, top: 0, bottom: 0 }}>
-                   <XAxis type="number" hide />
-                   <YAxis dataKey="name" type="category" width={70} fontSize={9} tickLine={false} axisLine={false} />
-                   <Tooltip formatter={(value: number) => [`${value} Wh`, 'Daily Load']} cursor={{fill: 'transparent'}} />
-                   <Bar dataKey="Wh" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.9} />
-                 </BarChart>
-               </ResponsiveContainer>
-             </div>
-          </div>
-        </div>
+        <ExportActions 
+          title="Off-Grid Solar Calculator" 
+          targetRef={resultRef}
+          data={{
+            'ZIP / Sun Location': zip || 'N/A',
+            'Days Autonomy': autonomy,
+            'Daily Demand (Wh)': results.dailyWh,
+            'Battery Target (kWh)': results.batteryKwh,
+            'Panels Recommended': results.panels,
+            'Estimated Hard Cost': `$${results.cost.toLocaleString()}`
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8 mt-auto">

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Septic() {
   const [bedrooms, setBedrooms] = useState(3);
   const [soil, setSoil] = useState('average');
   const [state, setState] = useState('TX');
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     let minTank = 0;
@@ -76,41 +78,57 @@ export default function Septic() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Recommended Tank Size</p>
-            <p className="text-4xl font-black text-white">{results.recommended.toLocaleString()} <span className="text-lg font-bold opacity-80">Gal</span></p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Recommended Tank Size</p>
+              <p className="text-4xl font-black text-white">{results.recommended.toLocaleString()} <span className="text-lg font-bold opacity-80">Gal</span></p>
+            </div>
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Est. Installation Cost</p>
+              <p className="text-2xl font-black text-gray-800">${results.costLow.toLocaleString()} - ${results.costHigh.toLocaleString()}</p>
+            </div>
           </div>
-          <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Est. Installation Cost</p>
-            <p className="text-2xl font-black text-gray-800">${results.costLow.toLocaleString()} - ${results.costHigh.toLocaleString()}</p>
-          </div>
-        </div>
 
-        {/* DETAILS PANEL */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Requirement Breakdown</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <ul className="space-y-4">
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Absolute Minimum (EPA)</span>
-                <span className="font-bold text-gray-900">{results.minTank.toLocaleString()} gal</span>
-              </li>
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Soil Condition Modifier</span>
-                <span className="font-bold text-gray-900">{soil === 'poor' ? '+25% Capacity' : 'No Penalty'}</span>
-              </li>
-              <li className="flex items-center justify-between text-sm pt-3 border-t border-gray-100">
-                <span className="text-gray-600">Est. Drain Field Size</span>
-                <span className="font-bold text-[#1a5f3f]">{results.drainField.toLocaleString()} sq ft</span>
-              </li>
-            </ul>
-            <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-800 leading-relaxed flex flex-col justify-center">
-              <strong>⚠️ State Mandates:</strong> Local states ({state}) may have additional structural or capacity mandates depending on local environmental regulations. High-flow fixtures or garbage disposals often trigger a strictly larger requirement tier by inspectors.
+          {/* DETAILS PANEL */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Requirement Breakdown</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ul className="space-y-4">
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Absolute Minimum (EPA)</span>
+                  <span className="font-bold text-gray-900">{results.minTank.toLocaleString()} gal</span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Soil Condition Modifier</span>
+                  <span className="font-bold text-gray-900">{soil === 'poor' ? '+25% Capacity' : 'No Penalty'}</span>
+                </li>
+                <li className="flex items-center justify-between text-sm pt-3 border-t border-gray-100">
+                  <span className="text-gray-600">Est. Drain Field Size</span>
+                  <span className="font-bold text-[#1a5f3f]">{results.drainField.toLocaleString()} sq ft</span>
+                </li>
+              </ul>
+              <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-800 leading-relaxed flex flex-col justify-center">
+                <strong>⚠️ State Mandates:</strong> Local states ({state}) may have additional structural or capacity mandates depending on local environmental regulations. High-flow fixtures or garbage disposals often trigger a strictly larger requirement tier by inspectors.
+              </div>
             </div>
           </div>
         </div>
+
+        <ExportActions 
+          title="Septic Tank Size Calculator" 
+          targetRef={resultRef}
+          data={{
+            'Bedrooms': bedrooms,
+            'State': state.toUpperCase(),
+            'Soil Type': soil.toUpperCase(),
+            'Recommended Tank Size (Gal)': results.recommended,
+            'Minimum Size (Gal)': results.minTank,
+            'Estimated Drain Field (sq ft)': results.drainField,
+            'Installation Cost Estimate': `$${results.costLow.toLocaleString()} - $${results.costHigh.toLocaleString()}`
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8">

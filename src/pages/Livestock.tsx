@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
 import { PlusCircle, Trash2 } from 'lucide-react';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Livestock() {
   const [animalStr, setAnimalStr] = useState('cattle');
@@ -8,6 +9,7 @@ export default function Livestock() {
   const [weight, setWeight] = useState(1000);
   const [temp, setTemp] = useState(70);
   const [lactating, setLactating] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     let perAnimalBase = 0;
@@ -108,37 +110,54 @@ export default function Livestock() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Herd Daily Consumption</p>
-            <p className="text-4xl font-black text-white">{results.daily.toLocaleString()} <span className="text-lg font-bold opacity-80">Gal</span></p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Herd Daily Consumption</p>
+              <p className="text-4xl font-black text-white">{results.daily.toLocaleString()} <span className="text-lg font-bold opacity-80">Gal</span></p>
+            </div>
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Weekly Draw Target</p>
+              <p className="text-3xl font-black text-gray-800">{results.weekly.toLocaleString()} <span className="text-lg font-bold text-gray-500">Gal</span></p>
+            </div>
           </div>
-          <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Weekly Draw Target</p>
-            <p className="text-3xl font-black text-gray-800">{results.weekly.toLocaleString()} <span className="text-lg font-bold text-gray-500">Gal</span></p>
-          </div>
-        </div>
 
-        {/* DETAILS PANEL */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Infrastructure Requirements</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <ul className="space-y-4 flex flex-col justify-center">
-              <li className="flex items-center justify-between text-sm pt-2 border-t border-gray-100">
-                <span className="text-gray-600">Base Suggested Trough</span>
-                <span className="font-bold text-gray-900">{results.tankRec.toLocaleString()} gal</span>
-              </li>
-              <li className="flex items-center justify-between text-sm pt-2 border-t border-gray-100 font-bold">
-                <span className="text-gray-800">Trough Safety Buffer</span>
-                <span className="text-[#1a5f3f]">2 Days Supply</span>
-              </li>
-            </ul>
-            <div className="p-4 bg-red-50 border border-red-100 rounded-lg text-xs text-red-800 leading-relaxed flex flex-col justify-center">
-              <strong>🌡️ Heat Alert:</strong> This is a baseline estimator. Extreme heat waves (90°F+) cause water consumption to surge massively as animals seek cooling. Do not undersize infrastructure.
+          {/* DETAILS PANEL */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Infrastructure Requirements</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ul className="space-y-4 flex flex-col justify-center">
+                <li className="flex items-center justify-between text-sm pt-2 border-t border-gray-100">
+                  <span className="text-gray-600">Base Suggested Trough</span>
+                  <span className="font-bold text-gray-900">{results.tankRec.toLocaleString()} gal</span>
+                </li>
+                <li className="flex items-center justify-between text-sm pt-2 border-t border-gray-100 font-bold">
+                  <span className="text-gray-800">Trough Safety Buffer</span>
+                  <span className="text-[#1a5f3f]">2 Days Supply</span>
+                </li>
+              </ul>
+              <div className="p-4 bg-red-50 border border-red-100 rounded-lg text-xs text-red-800 leading-relaxed flex flex-col justify-center">
+                <strong>🌡️ Heat Alert:</strong> This is a baseline estimator. Extreme heat waves (90°F+) cause water consumption to surge massively as animals seek cooling. Do not undersize infrastructure.
+              </div>
             </div>
           </div>
         </div>
+
+        <ExportActions 
+          title="Livestock Water Requirements Calculator" 
+          targetRef={resultRef}
+          data={{
+            'Animal Type': animalStr.toUpperCase(),
+            'Head Count': count,
+            'Est. Weight (lbs)': ['cattle', 'horses'].includes(animalStr) ? weight : 'N/A',
+            'Ambient Temperature (°F)': temp,
+            'Lactating / Nursing': lactating ? 'Yes' : 'No',
+            'Daily Consumption (Gal)': results.daily,
+            'Weekly Draw Target (Gal)': results.weekly,
+            'Suggested Trough Size (Gal)': results.tankRec
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8">

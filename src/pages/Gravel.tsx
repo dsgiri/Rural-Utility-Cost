@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Gravel() {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(10);
   const [depth, setDepth] = useState(3);
   const [type, setType] = useState('crushed');
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     // formula: L * W * (D/12)
@@ -81,49 +83,68 @@ export default function Gravel() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Cubic Yards</p>
-            <p className="text-2xl font-black text-gray-800">{results.cubicYards}</p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Cubic Yards</p>
+              <p className="text-2xl font-black text-gray-800">{results.cubicYards}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Total Tons (1.5x)</p>
+              <p className="text-2xl font-black text-gray-800">{results.tons}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Truckloads</p>
+              <p className="text-2xl font-black text-gray-800">{results.truckloads}</p>
+            </div>
+            <div className="bg-[#1a5f3f] p-4 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
+              <p className="text-[10px] font-bold text-green-200 uppercase">Total Estimate</p>
+              <p className="text-2xl font-black text-white">${results.totalCost.toFixed(2)}</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Total Tons (1.5x)</p>
-            <p className="text-2xl font-black text-gray-800">{results.tons}</p>
-          </div>
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-gray-400 uppercase">Truckloads</p>
-            <p className="text-2xl font-black text-gray-800">{results.truckloads}</p>
-          </div>
-          <div className="bg-[#1a5f3f] p-4 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center">
-            <p className="text-[10px] font-bold text-green-200 uppercase">Total Estimate</p>
-            <p className="text-2xl font-black text-white">${results.totalCost.toFixed(2)}</p>
-          </div>
-        </div>
 
-        {/* FINANCIAL SUMMARY PANEL */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Cost Breakdown</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ul className="space-y-4">
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Raw Material Subtotal</span>
-                <span className="font-bold text-gray-900">${results.materialCost.toFixed(2)}</span>
-              </li>
-              <li className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Delivery Processing</span>
-                <span className="font-bold text-gray-900">${results.deliveryFee.toFixed(2)}</span>
-              </li>
-              <li className="flex items-center justify-between text-lg font-black pt-3 border-t border-gray-100">
-                <span className="text-[#1a5f3f]">Net Estimate</span>
-                <span className="text-[#1a5f3f]">${results.totalCost.toFixed(2)}</span>
-              </li>
-            </ul>
-            <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-800 leading-relaxed flex flex-col justify-center">
-              <strong>💡 Driveway Design:</strong> Prices historically sit around $15-$30 per ton for crushed stone. The sharp, jagged edges lock together to form a highly compact, load-bearing surface optimal for cars and farm equipment.
+          {/* FINANCIAL SUMMARY PANEL */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Cost Breakdown</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ul className="space-y-4">
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Raw Material Subtotal</span>
+                  <span className="font-bold text-gray-900">${results.materialCost.toFixed(2)}</span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Delivery Processing</span>
+                  <span className="font-bold text-gray-900">${results.deliveryFee.toFixed(2)}</span>
+                </li>
+                <li className="flex items-center justify-between text-lg font-black pt-3 border-t border-gray-100">
+                  <span className="text-[#1a5f3f]">Net Estimate</span>
+                  <span className="text-[#1a5f3f]">${results.totalCost.toFixed(2)}</span>
+                </li>
+              </ul>
+              <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-800 leading-relaxed flex flex-col justify-center">
+                <strong>💡 Driveway Design:</strong> Prices historically sit around $15-$30 per ton for crushed stone. The sharp, jagged edges lock together to form a highly compact, load-bearing surface optimal for cars and farm equipment.
+              </div>
             </div>
           </div>
         </div>
+
+        <ExportActions 
+          title="Gravel Cost Calculator" 
+          targetRef={resultRef}
+          data={{
+            'Length (ft)': length,
+            'Width (ft)': width,
+            'Depth (inches)': depth,
+            'Gravel Type': type.toUpperCase(),
+            'Cubic Yards Needed': results.cubicYards,
+            'Total Tons': results.tons,
+            'Truckloads Needed': results.truckloads,
+            'Material Subtotal': `$${results.materialCost.toFixed(2)}`,
+            'Delivery Fee': `$${results.deliveryFee.toFixed(2)}`,
+            'Total Estimate': `$${results.totalCost.toFixed(2)}`
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8">

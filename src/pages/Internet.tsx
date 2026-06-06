@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { SEO } from '../components/SEO';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ExportActions } from '../components/ExportActions';
 
 export default function Internet() {
   const [zip, setZip] = useState('76001');
   const [homeSize, setHomeSize] = useState(2000);
   const [users, setUsers] = useState(4);
   const [speedReq, setSpeedReq] = useState(100);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const calculate = () => {
     // Determine provider availability based on ZIP prefix
@@ -94,63 +96,80 @@ export default function Internet() {
 
       {/* CENTER: OUTPUTS & VISUALS */}
       <section className="lg:col-span-8 flex flex-col gap-6">
-        {/* STAT CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center sm:col-span-2">
-            <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Best Value Match</p>
-            <p className="text-3xl font-black text-white">{results.bestValue.name}</p>
-            <p className="text-sm font-bold text-green-100 mt-1">${results.bestValue.price}/mo at {results.bestValue.speed} Mbps</p>
+        <div ref={resultRef} className="flex flex-col gap-6 print:m-0 print:gap-4 print:text-black">
+          {/* STAT CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-[#1a5f3f] p-5 rounded-xl shadow-md border border-transparent flex flex-col justify-center items-center text-center sm:col-span-2">
+              <p className="text-xs font-bold text-green-200 uppercase tracking-wider mb-1">Best Value Match</p>
+              <p className="text-3xl font-black text-white">{results.bestValue.name}</p>
+              <p className="text-sm font-bold text-green-100 mt-1">${results.bestValue.price}/mo at {results.bestValue.speed} Mbps</p>
+            </div>
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Available Providers</p>
+              <p className="text-4xl font-black text-[#1a5f3f]">{results.availableOptions.length}</p>
+            </div>
           </div>
-          <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Available Providers</p>
-            <p className="text-4xl font-black text-[#1a5f3f]">{results.availableOptions.length}</p>
+
+          {/* DETAILS & GRAPH PANEL */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 min-h-0 items-start">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 overflow-x-auto">
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Coverage & Cost Table</h3>
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-gray-100 text-gray-500">
+                    <th className="pb-2 font-semibold">Provider</th>
+                    <th className="pb-2 font-semibold">Type</th>
+                    <th className="pb-2 font-semibold">Speed</th>
+                    <th className="pb-2 font-semibold text-right">Monthly</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {results.availableOptions.map(opt => (
+                    <tr key={opt.id}>
+                      <td className="py-3 font-semibold text-gray-900">{opt.name}</td>
+                      <td className="py-3 text-gray-500">{opt.type}</td>
+                      <td className="py-3 text-gray-900">{opt.speed} Mbps</td>
+                      <td className="py-3 text-right font-bold text-[#1a5f3f]">${opt.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {homeSize >= 3000 && (
+                <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded text-[10px] text-red-700 leading-normal">
+                  <strong>📡 Large Home Alert:</strong> At {homeSize} sq ft, a single ISP router won't cover your footprint. Budget an extra $150-$300 for a Mesh WiFi system.
+                </div>
+              )}
+            </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col h-full">
+               <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Speed Comparison (Mbps)</h3>
+               <div className="w-full flex-grow min-h-[160px]">
+                 <ResponsiveContainer width="100%" height="100%">
+                   <BarChart data={results.chartData} layout="vertical" margin={{ left: 0, right: 10, top: 0, bottom: 0 }}>
+                     <XAxis type="number" hide />
+                     <YAxis dataKey="name" type="category" width={90} fontSize={9} tickLine={false} axisLine={false} />
+                     <Tooltip formatter={(value: number) => [`${value} Mbps`, 'Speed']} cursor={{fill: 'transparent'}} />
+                     <Bar dataKey="Speed" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.8} />
+                   </BarChart>
+                 </ResponsiveContainer>
+               </div>
+            </div>
           </div>
         </div>
 
-        {/* DETAILS & GRAPH PANEL */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 min-h-0 items-start">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 overflow-x-auto">
-            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4">Coverage & Cost Table</h3>
-            <table className="w-full text-left text-xs">
-              <thead>
-                <tr className="border-b border-gray-100 text-gray-500">
-                  <th className="pb-2 font-semibold">Provider</th>
-                  <th className="pb-2 font-semibold">Type</th>
-                  <th className="pb-2 font-semibold">Speed</th>
-                  <th className="pb-2 font-semibold text-right">Monthly</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {results.availableOptions.map(opt => (
-                  <tr key={opt.id}>
-                    <td className="py-3 font-semibold text-gray-900">{opt.name}</td>
-                    <td className="py-3 text-gray-500">{opt.type}</td>
-                    <td className="py-3 text-gray-900">{opt.speed} Mbps</td>
-                    <td className="py-3 text-right font-bold text-[#1a5f3f]">${opt.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {homeSize >= 3000 && (
-              <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded text-[10px] text-red-700 leading-normal">
-                <strong>📡 Large Home Alert:</strong> At {homeSize} sq ft, a single ISP router won't cover your footprint. Budget an extra $150-$300 for a Mesh WiFi system.
-              </div>
-            )}
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col h-full">
-             <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Speed Comparison (Mbps)</h3>
-             <div className="w-full flex-grow min-h-[160px]">
-               <ResponsiveContainer width="100%" height="100%">
-                 <BarChart data={results.chartData} layout="vertical" margin={{ left: 0, right: 10, top: 0, bottom: 0 }}>
-                   <XAxis type="number" hide />
-                   <YAxis dataKey="name" type="category" width={90} fontSize={9} tickLine={false} axisLine={false} />
-                   <Tooltip formatter={(value: number) => [`${value} Mbps`, 'Speed']} cursor={{fill: 'transparent'}} />
-                   <Bar dataKey="Speed" fill="#1a5f3f" radius={[0, 4, 4, 0]} opacity={0.8} />
-                 </BarChart>
-               </ResponsiveContainer>
-             </div>
-          </div>
-        </div>
+        <ExportActions 
+          title="Rural Internet Cost Calculator" 
+          targetRef={resultRef}
+          data={{
+            'ZIP Code': zip || 'N/A',
+            'Home Size (sq ft)': homeSize,
+            'Heavy Users / Devices': users,
+            'Target Speed (Mbps)': speedReq,
+            'Best Value Match': results.bestValue.name,
+            'Best Value Cost': `$${results.bestValue.price}/mo`,
+            'Best Value Speed': `${results.bestValue.speed} Mbps`,
+            'Available Providers': results.availableOptions.length
+          }}
+        />
 
         {/* SEO SNIPPET / FAQ */}
         <div className="bg-[#1a5f3f]/5 rounded-xl border border-[#1a5f3f]/10 p-5 flex flex-col md:flex-row gap-8 mt-auto">
