@@ -3,6 +3,7 @@ import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi
 import { cn } from '../lib/utils';
 import { ReactNode } from 'react';
 import { Logo } from './Logo';
+import { A11yControls } from './A11yControls';
 
 const navItems = [
   { path: '/', label: 'Home Dashboard', icon: HomeIcon },
@@ -55,15 +56,12 @@ export function Layout({ children }: { children: ReactNode }) {
             })}
           </ul>
         </div>
-        <div className="p-6 text-[10px] text-white/50 border-t border-white/10 mt-auto">
-          &copy; {new Date().getFullYear()} Rural Utility Cost.
-        </div>
       </nav>
 
       {/* Main Content Area */}
       <main className="flex-grow flex flex-col min-w-0 max-h-screen overflow-hidden print:max-h-none print:overflow-visible">
         {/* HEADER */}
-        <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 sm:px-8 flex-shrink-0 z-10 w-full relative print:hidden">
+        <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 sm:px-8 flex-shrink-0 z-50 w-full relative print:hidden">
           <div className="md:hidden flex items-center">
             {/* Mobile simplified header/link */}
             <Link to="/" className="font-bold text-lg text-gray-900 flex items-center gap-2">
@@ -75,6 +73,7 @@ export function Layout({ children }: { children: ReactNode }) {
             {navItems.find(i => i.path === location.pathname)?.label || 'Dashboard'}
           </h2>
           <div className="flex items-center gap-4">
+            <A11yControls />
             <span className="text-xs text-gray-500 hidden sm:inline-block">Location Context: <span className="font-medium text-gray-800">USA</span></span>
             {location.pathname !== '/' && (
               <button className="px-4 py-1.5 bg-[#1a5f3f] text-white text-sm rounded font-medium shadow-sm hover:bg-[#154d32] transition-colors whitespace-nowrap">
@@ -115,8 +114,29 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
 
         {/* CONTENT CONTAINER */}
-        <div className="flex-grow overflow-y-auto print:overflow-visible">
-          {children}
+        <div className="flex-grow overflow-y-auto print:overflow-visible flex flex-col">
+          <div className="flex-grow flex flex-col">
+            {children}
+          </div>
+          
+          {/* SITEWIDE FOOTER */}
+          <footer className="mt-8 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-[#111827] px-4 sm:px-8 py-8 text-center text-xs text-gray-500 dark:text-gray-400 print:hidden shrink-0">
+            <p className="mb-4 font-semibold text-gray-700 dark:text-gray-300 text-sm">All calculator results are estimates only.</p>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-4">
+              <Link to="/" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Home</Link>
+              <span className="opacity-40">|</span>
+              <Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Privacy Policy</Link>
+              <span className="opacity-40">|</span>
+              <Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Terms of Use</Link>
+              <span className="opacity-40">|</span>
+              <Link to="/disclaimer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Disclaimer</Link>
+              <span className="opacity-40">|</span>
+              <Link to="/cookie-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Cookie Policy</Link>
+              <span className="opacity-40">|</span>
+              <Link to="/contact" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Contact</Link>
+            </div>
+            <p>&copy; {new Date().getFullYear()} Rural Utility Cost. All rights reserved.</p>
+          </footer>
         </div>
         
         {/* AD SPACE (ADSENSE OPTIMIZED) */}
