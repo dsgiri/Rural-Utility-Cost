@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark, LineChart as LineChartIcon } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode, useState, useEffect } from 'react';
 import { Logo } from './Logo';
@@ -48,6 +48,7 @@ const navCategories = [
     title: "Animal & Farm",
     items: [
       { path: '/livestock-age', label: 'Livestock Age Estimator', icon: PawPrint, tooltip: 'Estimate the approximate age of cattle based on teeth' },
+      { path: '/cattle-growth-chart', label: 'Cattle Growth Chart', icon: LineChartIcon, tooltip: 'Track cattle weight gain and average daily gain (ADG)' },
       { path: '/meat-yield', label: 'Take-Home Meat Yield', icon: Scale, tooltip: 'Estimate packaged meat from live or hanging weight' },
       { path: '/meat-processing', label: 'Processing Cost', icon: Scissors, tooltip: 'Estimate butcher fees and cut/wrap costs' },
       { path: '/meat-cost-per-lb', label: 'Cost Per Pound', icon: Tag, tooltip: 'Find out your true break-even cost per pound' },
@@ -327,6 +328,9 @@ export function Layout({ children }: { children: ReactNode }) {
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><Link to="/about" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">About Us</Link></li>
                   <li><Link to="/contact" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Contact</Link></li>
+                  <li><Link to="/sources" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Sources & Science</Link></li>
+                  <li><Link to="/credits" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Credits</Link></li>
+                  <li><Link to="/partners" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Partners</Link></li>
                   <li><Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Privacy Policy</Link></li>
                   <li><Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Terms of Use</Link></li>
                   <li><Link to="/disclaimer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Disclaimer</Link></li>

@@ -226,6 +226,14 @@ Use these unique `CALC` tracking codes in Jira, GitHub issues, and code document
 * **Outputs:** Estimated age range in months and years, confidence level, method used, and limitations explanation.
 * **Target Pain Points:** Needing to age cattle for management or sales without accurate birth records.
 
+### `CALC-FARM-312`: Cattle Growth Chart (`/cattle-growth-chart`)
+* **Description:** Tracks cattle weight gain, calculates average daily gain (ADG), and projects target weights and dates.
+* **Functionality:** Simple 2-point linear ADG logic with remaining gain calculations and growth chart mapping.
+* **Inputs:** Previous weight, current weight, days between, target weight, target date or future days (optional).
+* **Core Calculation:** `ADG = (Current Weight - Previous Weight) / Days Between`. Target Days = Remaining Gain / ADG.
+* **Outputs:** ADG, total weight gained, days to target, projected future weight, growth status (on-track/ahead/behind).
+* **Target Pain Points:** Tracking feed efficiency, estimating finish dates for beef cattle.
+
 ---
 
 ## 💼 4. Business & Profit (`BIZ`)

@@ -3,10 +3,7 @@ build/
 dist/
 coverage/
 .DS_Store
-docs/AI-SEARCH-ENGINE-RANK-STRATEGY.md
-docs/PRACTICAL-RANKING-ROADMAP.md
-docs/BACKLOG.md
-docs/IMPLEMENTATION_STRATEGY_DRAFT.md
+/Compliance_Vault/
 *.log
 .env*
 !.env.example

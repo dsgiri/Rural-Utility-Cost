@@ -43,11 +43,16 @@ import MeatYield from './features/calculators/MeatYield/MeatYield';
 import MeatProcessing from './features/calculators/MeatProcessing/MeatProcessing';
 import MeatCostPerLb from './features/calculators/MeatCostPerLb/MeatCostPerLb';
 import LivestockAge from './features/calculators/LivestockAge/LivestockAge';
+import CattleGrowthChart from './features/calculators/CattleGrowthChart/CattleGrowthChart';
 import GenRuntime from './features/calculators/GenRuntime/GenRuntime';
 import GenFuelCost from './features/calculators/GenFuelCost/GenFuelCost';
 import GenCriticalLoad from './features/calculators/GenCriticalLoad/GenCriticalLoad';
 import PainPointPriority from './features/calculators/PainPointPriority/PainPointPriority';
 import GrantReadiness from './features/calculators/GrantReadiness/GrantReadiness';
+
+import Sources from './pages/Sources';
+import Credits from './pages/Credits';
+import Partners from './pages/Partners';
 
 export default function App() {
   return (
@@ -83,6 +88,7 @@ export default function App() {
           <Route path="/meat-processing" element={<MeatProcessing />} />
           <Route path="/meat-cost-per-lb" element={<MeatCostPerLb />} />
           <Route path="/livestock-age" element={<LivestockAge />} />
+          <Route path="/cattle-growth-chart" element={<CattleGrowthChart />} />
           <Route path="/gen-runtime" element={<GenRuntime />} />
           <Route path="/gen-fuel-cost" element={<GenFuelCost />} />
           <Route path="/gen-critical-load" element={<GenCriticalLoad />} />
@@ -100,6 +106,9 @@ export default function App() {
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/sources" element={<Sources />} />
+          <Route path="/credits" element={<Credits />} />
+          <Route path="/partners" element={<Partners />} />
         </Routes>
       </Layout>
       <CookieBanner />

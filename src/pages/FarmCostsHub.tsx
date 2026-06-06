@@ -108,6 +108,19 @@ export default function FarmCostsHub() {
             Estimate Age <ChevronRight className="w-4 h-4 ml-1" />
           </Link>
         </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-cyan-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <TrendingUp className="text-cyan-600 w-6 h-6" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Cattle Growth Chart</h2>
+          <p className="text-gray-600 mb-4">
+            Track cattle weight gain over time, calculate average daily gain (ADG), and project target weights.
+          </p>
+          <Link to="/cattle-growth-chart" className="text-blue-600 font-medium flex items-center hover:text-blue-700">
+            Track Growth <ChevronRight className="w-4 h-4 ml-1" />
+          </Link>
+        </div>
       </div>
 
       <div className="bg-gray-50 rounded-2xl p-8 mb-12">
