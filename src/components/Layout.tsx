@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode } from 'react';
 import { Logo } from './Logo';
@@ -19,6 +19,7 @@ const navCategories = [
   {
     title: "Energy & Utilities",
     items: [
+      { path: '/energy-demand', label: 'Peak Energy Demand', icon: Zap },
       { path: '/water-fill', label: 'Water Fill Charge', icon: Droplet },
       { path: '/propane', label: 'Propane Refill', icon: Flame },
       { path: '/solar', label: 'Off-Grid Solar', icon: Sun },
@@ -60,7 +61,7 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gray-50 font-sans print:h-auto print:overflow-visible print:bg-white">
       {/* SIDEBAR NAVIGATION (Desktop) */}
-      <nav className="w-64 bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col print:hidden">
+      <nav className="w-60 bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col print:hidden">
         <div className="p-6 border-b border-white/10 flex items-center gap-3">
           <Logo className="w-10 h-10 text-white" />
           <h1 className="text-xl font-bold leading-tight">
@@ -77,8 +78,8 @@ export function Layout({ children }: { children: ReactNode }) {
                 className={cn(
                   'px-6 py-3 flex items-center gap-3 cursor-pointer transition-all',
                   location.pathname === '/'
-                    ? 'bg-white/10 border-l-4 border-green-300 opacity-100'
-                    : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent'
+                    ? 'bg-white/20 border-l-4 border-green-300 opacity-100 font-bold'
+                    : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent font-medium'
                 )}
               >
                 <HomeIcon className="w-4 h-4" />
@@ -101,8 +102,8 @@ export function Layout({ children }: { children: ReactNode }) {
                           className={cn(
                             'px-6 py-2.5 flex items-center gap-3 cursor-pointer transition-all',
                             isActive
-                              ? 'bg-white/10 border-l-4 border-green-300 opacity-100'
-                              : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent'
+                              ? 'bg-white/20 border-l-4 border-green-300 opacity-100 font-bold text-white'
+                              : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent font-medium text-white/90'
                           )}
                         >
                           <Icon className="w-4 h-4" />

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap } from 'lucide-react';
 
 const calculatorCategories = [
   {
@@ -61,8 +61,18 @@ const calculatorCategories = [
   },
   {
     title: "Energy & Utilities",
-    desc: "Water, propane, solar, internet",
+    desc: "Water, propane, solar, internet, power",
     items: [
+      {
+        path: '/energy-demand',
+        title: 'Peak Energy Demand',
+        desc: 'Calculate peak kW demand charges by simulating simultaneous household appliance usage patterns.',
+        icon: Zap,
+        features: ['15-minute interval est.', 'Staggering advice', 'kW vs kWh impact', 'Rural co-op rates'],
+        color: 'text-violet-600',
+        bg: 'bg-violet-50',
+        border: 'border-violet-100',
+      },
       {
         path: '/water-fill',
         title: 'Water Fill Charge',
@@ -219,7 +229,7 @@ export default function Home() {
       <section className="bg-gradient-to-br from-[#1a5f3f] to-[#144a30] text-white py-10 px-6 sm:px-12 text-center rounded-b-3xl shadow-lg relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl font-black mb-4 tracking-tight">Calculate Rural Utility<br/>Costs Instantly.</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight max-w-3xl mx-auto leading-tight">Calculate Rural<br className="sm:hidden" /> Utility Costs.</h1>
           <p className="text-base sm:text-lg text-green-100 max-w-2xl mx-auto mb-6 font-medium">
             Stop guessing. Get accurate, data-driven estimates for land development, homesteading, and off-grid rural living.
           </p>
@@ -232,6 +242,7 @@ export default function Home() {
       {/* CALCULATOR GRID */}
       <section className="px-4 py-8 max-w-7xl mx-auto w-full flex-grow">
         <div className="text-center mb-12">
+          <p className="text-xs font-bold text-[#1a5f3f] uppercase tracking-wider mb-3">Start Here</p>
           <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tight">Our Calculation Tools</h2>
           <div className="h-1 w-16 bg-[#1a5f3f] mx-auto mt-4 rounded-full"></div>
         </div>
@@ -249,7 +260,7 @@ export default function Home() {
                   {category.items.map((calc, idx) => {
                     const Icon = calc.icon;
                     return (
-                      <Link key={idx} to={calc.path} className="group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                      <Link key={idx} to={calc.path} className="group h-full min-h-[340px] flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                         <div className={`p-6 pb-5 border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
                           <div className={`p-3 rounded-xl bg-white shadow-sm border ${calc.border}`}>
                             <Icon className={`w-7 h-7 ${calc.color}`} />

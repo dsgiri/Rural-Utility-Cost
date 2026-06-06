@@ -20,6 +20,7 @@ import Incubation from './pages/Incubation';
 import CutCost from './pages/CutCost';
 import ExpandProfit from './pages/ExpandProfit';
 import GrantFinder from './pages/GrantFinder';
+import EnergyDemand from './pages/EnergyDemand';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Disclaimer from './pages/Disclaimer';
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/cable" element={<Cable />} />
           <Route path="/fencing" element={<Fencing />} />
           <Route path="/propane" element={<Propane />} />
+          <Route path="/energy-demand" element={<EnergyDemand />} />
           <Route path="/gestation" element={<Gestation />} />
           <Route path="/incubation" element={<Incubation />} />
           <Route path="/cut-cost" element={<CutCost />} />
