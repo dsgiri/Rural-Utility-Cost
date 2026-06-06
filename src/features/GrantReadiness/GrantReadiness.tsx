@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { SEO } from '../components/SEO';
+import { SEO } from '../../components/SEO';
 import { Landmark, Info, Banknote, AlertTriangle, ArrowRight, RotateCcw } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { cn } from '../../lib/utils';
 
 type Tab = 'simple' | 'reimbursable';
 
@@ -330,12 +330,17 @@ export default function GrantReadiness() {
                 </div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-gray-100 leading-relaxed text-sm text-gray-600">
-                <strong className="block mb-2 text-gray-900">How the cycle works (per phase):</strong>
-                1. Spend {formatCurrency(costPerPhase)} to finish Phase 1.<br/>
-                2. Submit receipts and cancelled checks to agency.<br/>
-                3. Wait 30-90 days for {formatCurrency(costPerPhase * (grantPercent2/100))} reimbursement payout.<br/>
-                4. Use the reimbursement + your match cash to start Phase 2.
+              <div className="p-4 bg-white rounded-xl border border-gray-100 leading-relaxed text-sm text-gray-600 shadow-sm mt-6">
+                <h3 className="flex items-center gap-2 font-bold text-gray-900 mb-3 text-base">
+                  <Info className="w-5 h-5 text-emerald-600" />
+                  How it works
+                </h3>
+                <ul className="space-y-2 list-disc pl-5 marker:text-emerald-500">
+                  <li><strong>Spend Phase:</strong> You spend {formatCurrency(costPerPhase)} to complete the first phase of the project out of your own pocket.</li>
+                  <li><strong>Verification:</strong> Submit paid receipts, invoices, and cancelled checks to the granting agency.</li>
+                  <li><strong>Reimbursement:</strong> Wait roughly 30-90 days for your {formatCurrency(costPerPhase * (grantPercent2/100))} reimbursement payout.</li>
+                  <li><strong>Cycle Repeats:</strong> Use that reimbursement plus your remaining match cash to start the next phase.</li>
+                </ul>
               </div>
 
             </div>

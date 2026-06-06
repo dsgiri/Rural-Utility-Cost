@@ -22,6 +22,10 @@ This document outlines the operational tempo and methodology for building and ex
 * **No fluff.** Do not use marketing adjectives to describe code achievements. 
 * **Prioritize accuracy and safety.** If a calculation involves regulatory thresholds, emphasize disclaimers.
 
-## 4. Continuous Refactoring
+## 4. Sprint Completion & Documentation Updates
+* **MANDATORY:** After completing an agile sprint or major structural release, update all relevant project management documents (e.g., this file, `ARCHITECTURE_STANDARDS.md`, `CALCULATOR_REGISTRY.md`, `features.md`). 
+* This ensures the AI agent context and documentation remain tightly coupled to the actual codebase.
+
+## 5. Continuous Refactoring
 * If a pattern emerges across 3 or more calculators (e.g., an identical Output Summary card or Input Field styling), refactor it into `/src/components/shared/` immediately to reduce repetition.
 * Clean up unused imports and obsolete files actively during development cycles.

@@ -9,7 +9,8 @@ The Rural Utility Cost platform is designed to be lightweight, fast, and scalabl
 
 ## 2. Directory Structure
 * `/src/components`: UI primitives, layout wrappers, and shared interface elements.
-* `/src/pages`: Top-level route components representing full screen views (e.g., the Home screen, individual calculators).
+* `/src/features`: Domain-specific modules representing individual calculators or complex features (e.g., Pain Point Priority, Grant Readiness). Each folder contains its own component, types, custom hooks, and usage instructions.
+* `/src/pages`: Generic static routes and shell pages (e.g., Home, About, Privacy Policy).
 * `/src/lib`: Helper functions, pure mathematical logic, and utilities (like the `cn` function).
 
 ## 3. State Management

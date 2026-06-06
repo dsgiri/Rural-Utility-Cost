@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { SEO } from '../components/SEO';
-import { ExportActions } from '../components/ExportActions';
-import { ClipboardCheck, Tag, DollarSign, AlertCircle, ShieldCheck, FileText, CheckCircle2 } from 'lucide-react';
+import { SEO } from '../../components/SEO';
+import { ExportActions } from '../../components/ExportActions';
+import { ClipboardCheck, Tag, DollarSign, AlertCircle, ShieldCheck, FileText, CheckCircle2, Scale } from 'lucide-react';
 
 type Tab = 'cost' | 'label' | 'readiness';
 
@@ -362,9 +362,11 @@ export default function FoodProcessingCompliance() {
                       </div>
 
                       <ExportActions 
-                        calculatorName="FDA Readiness Score"
-                        inputs={{ checksCompleted: checklist.filter(c => c.status === 'yes').length }}
-                        results={{ readinessScore }}
+                        title="FDA Readiness Score"
+                        data={{
+                  ...{  checksCompleted: checklist.filter(c => c.status === 'yes').length  },
+                  ...{  readinessScore  }
+                }}
                       />
                     </div>
                   </div>
@@ -426,9 +428,11 @@ export default function FoodProcessingCompliance() {
                     </div>
 
                     <ExportActions 
-                      calculatorName="Organic Certification Cost"
-                      inputs={{ grossSales, needsExpedited }}
-                      results={{ totalCost, outOfPocket }}
+                      title="Organic Certification Cost"
+                      data={{
+                  ...{  grossSales, needsExpedited  },
+                  ...{  totalCost, outOfPocket  }
+                }}
                     />
                   </div>
                 )}
@@ -481,9 +485,11 @@ export default function FoodProcessingCompliance() {
 
                     <div className="mt-4">
                       <ExportActions 
-                        calculatorName="Organic Label Percentage"
-                        inputs={{ totalWeight: ingredients.reduce((s,i)=>s+i.weight,0) }}
-                        results={{ organicPercentage }}
+                        title="Organic Label Percentage"
+                        data={{
+                  ...{  totalWeight: ingredients.reduce((s,i)=>s+i.weight,0)  },
+                  ...{  organicPercentage  }
+                }}
                       />
                     </div>
                   </div>
@@ -494,12 +500,26 @@ export default function FoodProcessingCompliance() {
           
           {/* Support Content */}
           <div className="mt-8 bg-gray-50 dark:bg-gray-800/50 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
-            <h4 className="flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-tight mb-3">
-              <FileText className="w-4 h-4 text-gray-500" /> Reference Guidance
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <p><strong>Organic Certification Costs:</strong> The estimates provided here are baseline averages for typical certification agencies (like CCOF, OEFFA, or Oregon Tilth). Unannounced inspections or distant rural travel may incur additional inspector travel fees.</p>
-              <p><strong>Organic Labeling Tiers (NOP):</strong> Products legally labeled "Organic" must contain at least 95% organically produced ingredients (excluding water and salt). Products between 70-94% can only claim "Made with organic [up to three ingredients]" and cannot use the official USDA seal.</p>
+            <h3 className="flex items-center gap-2 font-bold text-gray-900 dark:text-gray-100 mb-4 text-base">
+              <Info className="w-5 h-5 text-[#1a5f3f]" />
+              How it works
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-gray-400">
+              <div>
+                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Organic Certification Costs:</h4>
+                <p className="mb-2">This tool estimates baseline averages for typical certification agencies (e.g. CCOF, OEFFA, Oregon Tilth). Unannounced inspections or distant rural travel may incur additional inspector travel fees.</p>
+                <p>The USDA FSA Cost Share program may rebate up to 75% of your eligible certification costs (up to $750 max limits per scope), strictly after you have paid the agency and achieved certification.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Organic Labeling Requirements (NOP):</h4>
+                <ul className="space-y-1 list-disc pl-4 marker:text-[#1a5f3f]">
+                  <li><strong>100% Organic:</strong> May use USDA seal. All ingredients and processing aids must be organic.</li>
+                  <li><strong>Organic (95%+):</strong> May use USDA seal. Up to 5% non-organic ingredients from the National List.</li>
+                  <li><strong>Made with Organic (70-94%):</strong> Cannot use USDA seal. Can state "Made with organic [up to 3 ingredients]."</li>
+                  <li><strong>Below 70%:</strong> No organic claims on the principal display panel. Specific ingredients can be noted as organic in the info panel.</li>
+                </ul>
+              </div>
             </div>
           </div>
 

@@ -1,109 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { SEO } from '../components/SEO';
-import { AlertOctagon, Plus, Edit2, Trash2, Save, X, Info, LayoutList, GripVertical } from 'lucide-react';
-
-type PainPoint = {
-  id: string;
-  name: string;
-  severity: number;
-  frequency: number;
-  costImpact: number;
-  timeImpact: number;
-  riskUrgency: number;
-  effortToFix: number;
-  notes: string;
-};
-
-const DEFAULT_PAIN_POINTS: PainPoint[] = [
-  { id: '1', name: 'Generator outages', severity: 5, frequency: 3, costImpact: 4, timeImpact: 4, riskUrgency: 4, effortToFix: 3, notes: 'Need a dedicated backup.' },
-  { id: '2', name: 'Feed costs', severity: 4, frequency: 5, costImpact: 5, timeImpact: 2, riskUrgency: 3, effortToFix: 4, notes: 'Evaluate bulk buying.' },
-  { id: '3', name: 'Water hauling', severity: 4, frequency: 4, costImpact: 3, timeImpact: 5, riskUrgency: 3, effortToFix: 5, notes: 'Drill a well?' },
-  { id: '4', name: 'Fence repairs', severity: 3, frequency: 4, costImpact: 2, timeImpact: 4, riskUrgency: 2, effortToFix: 2, notes: 'Patch holes weekly.' },
-  { id: '5', name: 'Utility overruns', severity: 3, frequency: 5, costImpact: 4, timeImpact: 1, riskUrgency: 2, effortToFix: 4, notes: 'Insulate the barn.' },
-];
-
-const INITIAL_FORM_STATE = {
-  name: '',
-  severity: 3,
-  frequency: 3,
-  costImpact: 3,
-  timeImpact: 3,
-  riskUrgency: 3,
-  effortToFix: 3,
-  notes: '',
-};
+import React from 'react';
+import { SEO } from '../../components/SEO';
+import { AlertOctagon, Plus, Edit2, Trash2, Save, Info, LayoutList } from 'lucide-react';
+import { PainPoint } from './types';
+import { usePainPoints } from './usePainPoints';
 
 export default function PainPointPriority() {
-  const [items, setItems] = useState<PainPoint[]>([]);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState<Omit<PainPoint, 'id'>>(INITIAL_FORM_STATE);
-
-  // Load from local storage
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('ruralPainPoints');
-      if (stored) {
-        setItems(JSON.parse(stored));
-      } else {
-        setItems(DEFAULT_PAIN_POINTS);
-        localStorage.setItem('ruralPainPoints', JSON.stringify(DEFAULT_PAIN_POINTS));
-      }
-    } catch (e) {
-      console.error('Failed to load pain points', e);
-      setItems(DEFAULT_PAIN_POINTS);
-    }
-  }, []);
-
-  // Save to local storage on change
-  useEffect(() => {
-    if (items.length > 0) {
-      localStorage.setItem('ruralPainPoints', JSON.stringify(items));
-    }
-  }, [items]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim()) return;
-
-    if (editingId) {
-      setItems(items.map(item => item.id === editingId ? { ...formData, id: editingId } : item));
-      setEditingId(null);
-    } else {
-      const newItem = { ...formData, id: Date.now().toString() };
-      setItems([...items, newItem]);
-    }
-    setFormData(INITIAL_FORM_STATE);
-  };
-
-  const handleEdit = (item: PainPoint) => {
-    setEditingId(item.id);
-    setFormData({
-      name: item.name,
-      severity: item.severity,
-      frequency: item.frequency,
-      costImpact: item.costImpact,
-      timeImpact: item.timeImpact,
-      riskUrgency: item.riskUrgency,
-      effortToFix: item.effortToFix,
-      notes: item.notes || '',
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleDelete = (id: string) => {
-    if (window.confirm('Remove this item from the list?')) {
-      const newItems = items.filter(item => item.id !== id);
-      setItems(newItems);
-      if (newItems.length === 0) {
-        localStorage.removeItem('ruralPainPoints');
-      }
-    }
-  };
-
-  const cancelEdit = () => {
-    setEditingId(null);
-    setFormData(INITIAL_FORM_STATE);
-  };
+  const {
+    items,
+    editingId,
+    formData,
+    setFormData,
+    handleSubmit,
+    handleEdit,
+    handleDelete,
+    cancelEdit,
+  } = usePainPoints();
 
   const getTier = (painScore: number, effort: number) => {
     // Quick Win: high pain, low effort
@@ -163,9 +74,9 @@ export default function PainPointPriority() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 print:block">
         {/* LEFT / TOP ENTRY FORM */}
-        <div className="lg:col-span-4 lg:col-start-1 h-fit">
+        <div className="lg:col-span-4 lg:col-start-1 h-fit print:hidden">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sticky top-6">
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <Plus className="w-5 h-5 text-rose-600" />
@@ -240,20 +151,20 @@ export default function PainPointPriority() {
         </div>
 
         {/* RIGHT / BOTTOM LIST */}
-        <div className="lg:col-span-8">
-          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 h-full min-h-[600px]">
+        <div className="lg:col-span-8 print:w-full">
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 h-full min-h-[600px] print:bg-white print:border-none print:p-0 print:min-h-0">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <LayoutList className="w-5 h-5 text-gray-500" />
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2 print:text-2xl">
+                <LayoutList className="w-5 h-5 text-gray-500 print:hidden" />
                 Ranked Action List
               </h2>
-              <span className="bg-white border border-gray-200 text-gray-600 px-3 py-1 text-sm font-medium rounded-full shadow-sm">
+              <span className="bg-white border border-gray-200 text-gray-600 px-3 py-1 text-sm font-medium rounded-full shadow-sm print:hidden">
                 {items.length} Items Indexed
               </span>
             </div>
 
             {items.length === 0 ? (
-              <div className="text-center py-20">
+              <div className="text-center py-20 print:hidden">
                 <AlertOctagon className="w-12 h-12 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-gray-900 mb-1">No pending issues</h3>
                 <p className="text-gray-500">Add a problem to the left to see your priority ranking.</p>
@@ -296,12 +207,12 @@ export default function PainPointPriority() {
                         </div>
 
                         <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-4 sm:gap-2">
-                          <div className="text-center bg-gray-50 px-4 py-2 rounded-lg border border-gray-100 min-w-[90px]">
+                          <div className="text-center bg-gray-50 px-4 py-2 rounded-lg border border-gray-100 min-w-[90px] print:bg-white print:border-none print:p-0">
                             <div className="text-xs font-bold text-gray-500 uppercase">Pain Score</div>
                             <div className="text-2xl font-black text-rose-700">{pain}</div>
                           </div>
                           
-                          <div className="flex gap-2">
+                          <div className="flex gap-2 print:hidden">
                             <button 
                               onClick={() => handleEdit(item)}
                               className="p-2 text-gray-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
@@ -325,7 +236,7 @@ export default function PainPointPriority() {
               </div>
             )}
 
-            <div className="mt-8 bg-blue-50/50 rounded-xl p-4 flex gap-3 text-blue-800 text-sm border border-blue-100">
+            <div className="mt-8 bg-blue-50/50 rounded-xl p-4 flex gap-3 text-blue-800 text-sm border border-blue-100 print:hidden">
               <Info className="w-5 h-5 shrink-0 text-blue-500" />
               <div>
                 <strong className="block font-semibold text-blue-900 mb-1">How Scoring Works</strong>
@@ -335,6 +246,17 @@ export default function PainPointPriority() {
                 • <strong>Long-Term:</strong> Pain ≥ 16, Effort ≥ 4. Needs planning/budgeting.
               </div>
             </div>
+
+            {items.length > 0 && (
+              <div className="print:hidden mt-4">
+                <div className="flex flex-col sm:flex-row gap-2 mt-6 print:hidden">
+                  <button onClick={() => window.print()} className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 py-2.5 px-3 rounded-xl text-sm font-medium transition-colors shadow-sm active:scale-[0.98]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-printer"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                    Print Report
+                  </button>
+                </div>
+              </div>
+            )}
 
           </div>
         </div>

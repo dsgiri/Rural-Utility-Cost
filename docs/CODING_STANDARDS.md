@@ -14,12 +14,13 @@ These standards ensure that the Rural Utility Cost codebase remains clean, predi
 * **Return Types:** Explicitly define return types for complex functions and custom hooks to prevent implicit inference errors.
 * **Avoid Enums via `const enum`:** Use standard `enum` declarations or union types (`type Status = 'idle' | 'success' | 'error'`).
 
-## 3. React Components
+## 3. React Components & Structure
+* **Hybrid Folder Structure:** Use a flat structure for static pages/shell (`src/pages/*`), but use a dedicated folder structure (`src/features/FeatureName/*`) for complex calculators. The dedicated folder should house the main `.tsx` file, a `types.ts` file, any custom hooks (e.g. `usePainPoints.ts`), and a `usage-instructions.md` file.
 * **Functional Components:** Always use functional components and React Hooks. Do not use Class components.
 * **Naming:** 
   * Use **PascalCase** for component file names and component functions (e.g., `GenFuelCost.tsx`, `function GenFuelCost()`).
   * Use **camelCase** for variables, functions, and state hooks.
-* **Simplicity First:** Keep components small, focused, and single-responsibility. If a file exceeds 300-400 lines, extract sub-components or logic functions.
+* **Simplicity First:** Keep components small, focused, and single-responsibility. Extracted logic should live in custom hooks in the feature folder.
 * **Hooks:** Follow the Rules of Hooks. Stabilize dependencies in `useEffect` and `useCallback` to prevent infinite re-renders.
 
 ## 4. State & Logic Separation
