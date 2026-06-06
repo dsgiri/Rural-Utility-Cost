@@ -14,12 +14,12 @@ const navCategories = [
     categoryIcon: Building2,
     title: "Property & Construction",
     items: [
-      { path: '/rural-land', label: 'Rural Land Value', icon: Map },
-      { path: '/septic', label: 'Septic Tank Size', icon: LayoutGrid },
-      { path: '/fill-dirt', label: 'Fill Dirt Cost', icon: Shovel },
-      { path: '/gravel', label: 'Gravel Cost', icon: Trees },
-      { path: '/fencing', label: 'Fencing Cost', icon: Crop },
-      { path: '/well', label: 'Well Water Drilling', icon: ArrowDownToDot },
+      { path: '/rural-land', label: 'Rural Land Value', icon: Map, tooltip: 'Estimate selling price or evaluate a parcel for buying' },
+      { path: '/septic', label: 'Septic Tank Size', icon: LayoutGrid, tooltip: 'Calculate required septic tank capacity based on bedrooms' },
+      { path: '/fill-dirt', label: 'Fill Dirt Cost', icon: Shovel, tooltip: 'Calculate dirt needed for grading and filling' },
+      { path: '/gravel', label: 'Gravel Cost', icon: Trees, tooltip: 'Calculate gravel needed for driveways and paths' },
+      { path: '/fencing', label: 'Fencing Cost', icon: Crop, tooltip: 'Estimate costs for wood, wire, or vinyl fencing' },
+      { path: '/well', label: 'Well Water Drilling', icon: ArrowDownToDot, tooltip: 'Estimate deep or shallow well drilling costs' },
     ]
   },
   {
@@ -28,12 +28,12 @@ const navCategories = [
     categoryIcon: Zap,
     title: "Energy & Utilities",
     items: [
-      { path: '/energy-demand', label: 'Peak Energy Demand', icon: Zap },
-      { path: '/water-fill', label: 'Water Fill Charge', icon: Droplet },
-      { path: '/propane', label: 'Propane Refill', icon: Flame },
-      { path: '/solar', label: 'Off-Grid Solar', icon: Sun },
-      { path: '/internet', label: 'Wireless Internet', icon: Wifi },
-      { path: '/cable', label: 'Cable TV', icon: Tv },
+      { path: '/energy-demand', label: 'Peak Energy Demand', icon: Zap, tooltip: 'Calculate maximum electrical load for off-grid or backup' },
+      { path: '/water-fill', label: 'Water Fill Charge', icon: Droplet, tooltip: 'Estimate cost for bulk water delivery' },
+      { path: '/propane', label: 'Propane Refill', icon: Flame, tooltip: 'Estimate heating fuel and propane costs' },
+      { path: '/solar', label: 'Off-Grid Solar', icon: Sun, tooltip: 'Calculate solar panel and battery requirements' },
+      { path: '/internet', label: 'Wireless Internet', icon: Wifi, tooltip: 'Compare satellite and radio internet options' },
+      { path: '/cable', label: 'Cable TV', icon: Tv, tooltip: 'Compare TV options for rural properties' },
     ]
   },
   {
@@ -42,16 +42,16 @@ const navCategories = [
     categoryIcon: PawPrint,
     title: "Animal & Farm",
     items: [
-      { path: '/meat-yield', label: 'Take-Home Meat Yield', icon: Scale },
-      { path: '/meat-processing', label: 'Processing Cost', icon: Scissors },
-      { path: '/meat-cost-per-lb', label: 'Cost Per Pound', icon: Tag },
-      { path: '/hive-startup', label: 'Hive Startup Cost', icon: Hexagon },
-      { path: '/honey-yield', label: 'Honey Yield', icon: Droplet },
-      { path: '/syrup-mix', label: 'Syrup Mix', icon: Beaker },
-      { path: '/habitat-cost', label: 'Habitat Builder', icon: Leaf },
-      { path: '/livestock', label: 'Livestock Water', icon: PawPrint },
-      { path: '/gestation', label: 'Animal Gestation', icon: CalendarHeart },
-      { path: '/incubation', label: 'Egg Incubation', icon: Bird },
+      { path: '/meat-yield', label: 'Take-Home Meat Yield', icon: Scale, tooltip: 'Estimate packaged meat from live or hanging weight' },
+      { path: '/meat-processing', label: 'Processing Cost', icon: Scissors, tooltip: 'Estimate butcher fees and cut/wrap costs' },
+      { path: '/meat-cost-per-lb', label: 'Cost Per Pound', icon: Tag, tooltip: 'Find out your true break-even cost per pound' },
+      { path: '/hive-startup', label: 'Hive Startup Cost', icon: Hexagon, tooltip: 'Calculate cost to start beekeeping' },
+      { path: '/honey-yield', label: 'Honey Yield', icon: Droplet, tooltip: 'Estimate honey production per hive' },
+      { path: '/syrup-mix', label: 'Syrup Mix', icon: Beaker, tooltip: 'Calculate sugar syrup ratios for feeding bees' },
+      { path: '/habitat-cost', label: 'Habitat Builder', icon: Leaf, tooltip: 'Calculate seed or cover crop costs' },
+      { path: '/livestock', label: 'Livestock Water', icon: PawPrint, tooltip: 'Calculate daily water needs for animals' },
+      { path: '/gestation', label: 'Animal Gestation', icon: CalendarHeart, tooltip: 'Calculate expected birthing dates' },
+      { path: '/incubation', label: 'Egg Incubation', icon: Bird, tooltip: 'Calculate hatching dates for poultry' },
     ]
   },
   {
@@ -60,9 +60,9 @@ const navCategories = [
     categoryIcon: TrendingUp,
     title: "Business & Profit",
     items: [
-      { path: '/cut-cost', label: 'Cut Cost', icon: Scissors },
-      { path: '/expand-profit', label: 'Expand Profit', icon: TrendingUp },
-      { path: '/compliance', label: 'Processing & Compliance', icon: ShieldCheck },
+      { path: '/cut-cost', label: 'Cut Cost', icon: Scissors, tooltip: 'Find areas to reduce operational overhead' },
+      { path: '/expand-profit', label: 'Expand Profit', icon: TrendingUp, tooltip: 'Find out how to increase margins' },
+      { path: '/compliance', label: 'Processing & Compliance', icon: ShieldCheck, tooltip: 'Verify state/federal regulatory compliance' },
     ]
   },
   {
@@ -71,7 +71,7 @@ const navCategories = [
     categoryIcon: Banknote,
     title: "Government Aid & Grants",
     items: [
-      { path: '/grant-finder', label: 'Grant Finder', icon: Search },
+      { path: '/grant-finder', label: 'Grant Finder', icon: Search, tooltip: 'Search for USDA or state agriculture grants' },
     ]
   }
 ];
@@ -147,6 +147,7 @@ export function Layout({ children }: { children: ReactNode }) {
                         <li key={item.path}>
                           <Link
                             to={item.path}
+                            title={(item as any).tooltip || item.label}
                             className={cn(
                               'px-6 py-2.5 flex items-center gap-3 cursor-pointer transition-all',
                               isActive
@@ -197,6 +198,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 <Link 
                   to={`/#${cat.id}`}
                   key={cat.id} 
+                  title={`Jump to ${cat.title} section`}
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-[#1a5f3f]/10 dark:bg-gray-800 dark:hover:bg-gray-700 text-slate-700 hover:text-[#1a5f3f] dark:text-gray-200 dark:hover:text-green-300 rounded-full text-sm font-medium transition-colors border border-transparent hover:border-[#1a5f3f]/20 dark:border-gray-700 dark:hover:border-green-500/50"
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -232,6 +234,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 <Link
                   key={item.path}
                   to={item.path}
+                  title={(item as any).tooltip || item.label}
                   className={cn(
                     'px-3 py-2 rounded-md text-sm font-medium flex flex-col items-center gap-1 transition-colors min-w-[80px]',
                     isActive
