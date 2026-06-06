@@ -30,6 +30,12 @@ import Disclaimer from './pages/Disclaimer';
 import CookiePolicy from './pages/CookiePolicy';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import HiveStartup from './pages/HiveStartup';
+import HoneyYield from './pages/HoneyYield';
+import SyrupMix from './pages/SyrupMix';
+import MeatYield from './pages/MeatYield';
+import MeatProcessing from './pages/MeatProcessing';
+import MeatCostPerLb from './pages/MeatCostPerLb';
 
 export default function App() {
   return (
@@ -52,6 +58,12 @@ export default function App() {
           <Route path="/propane" element={<Propane />} />
           <Route path="/rural-land" element={<RuralLand />} />
           <Route path="/habitat-cost" element={<HabitatCost />} />
+          <Route path="/hive-startup" element={<HiveStartup />} />
+          <Route path="/honey-yield" element={<HoneyYield />} />
+          <Route path="/syrup-mix" element={<SyrupMix />} />
+          <Route path="/meat-yield" element={<MeatYield />} />
+          <Route path="/meat-processing" element={<MeatProcessing />} />
+          <Route path="/meat-cost-per-lb" element={<MeatCostPerLb />} />
           <Route path="/energy-demand" element={<EnergyDemand />} />
           <Route path="/gestation" element={<Gestation />} />
           <Route path="/incubation" element={<Incubation />} />

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode, useState } from 'react';
 import { Logo } from './Logo';
@@ -42,6 +42,12 @@ const navCategories = [
     categoryIcon: PawPrint,
     title: "Animal & Farm",
     items: [
+      { path: '/meat-yield', label: 'Take-Home Meat Yield', icon: Scale },
+      { path: '/meat-processing', label: 'Processing Cost', icon: Scissors },
+      { path: '/meat-cost-per-lb', label: 'Cost Per Pound', icon: Tag },
+      { path: '/hive-startup', label: 'Hive Startup Cost', icon: Hexagon },
+      { path: '/honey-yield', label: 'Honey Yield', icon: Droplet },
+      { path: '/syrup-mix', label: 'Syrup Mix', icon: Beaker },
       { path: '/habitat-cost', label: 'Habitat Builder', icon: Leaf },
       { path: '/livestock', label: 'Livestock Water', icon: PawPrint },
       { path: '/gestation', label: 'Animal Gestation', icon: CalendarHeart },
@@ -78,6 +84,7 @@ const navItems = [
 export function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const filteredCategories = navCategories.map(cat => ({
     ...cat,
@@ -90,8 +97,11 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gray-50 font-sans print:h-auto print:overflow-visible print:bg-white">
       {/* SIDEBAR NAVIGATION (Desktop) */}
-      <nav className="w-60 bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col print:hidden">
-        <div className="border-b border-white/10">
+      <nav className={cn(
+        "bg-[#1a5f3f] text-white flex-shrink-0 hidden md:flex flex-col print:hidden transition-all duration-300 ease-in-out overflow-hidden",
+        isSidebarCollapsed ? "w-0" : "w-60"
+      )}>
+        <div className="border-b border-white/10 w-60">
           <Link to="/" onClick={() => setSearchQuery('')} className="p-6 flex items-center gap-3 hover:bg-white/5 transition-colors cursor-pointer">
             <Logo className="w-10 h-10 text-white" />
             <h1 className="text-xl font-bold leading-tight">
@@ -102,7 +112,7 @@ export function Layout({ children }: { children: ReactNode }) {
           </Link>
         </div>
         
-        <div className="px-4 py-3 border-b border-white/10">
+        <div className="px-4 py-3 border-b border-white/10 w-60">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
               <Search className="h-4 w-4 text-white/50" />
@@ -117,7 +127,7 @@ export function Layout({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <div className="flex-grow py-4 overflow-y-auto">
+        <div className="flex-grow py-4 overflow-y-auto w-60">
           <ul className="space-y-1">
             {filteredCategories.length === 0 && searchQuery !== '' ? (
               <li className="px-6 py-4 text-sm text-white/60 text-center italic">
@@ -162,12 +172,21 @@ export function Layout({ children }: { children: ReactNode }) {
       <main className="flex-grow flex flex-col min-w-0 max-h-screen overflow-hidden print:max-h-none print:overflow-visible">
         {/* HEADER */}
         <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 sm:px-8 flex-shrink-0 z-50 w-full relative print:hidden">
-          <div className="md:hidden flex items-center">
-            {/* Mobile simplified header/link */}
-            <Link to="/" className="font-bold text-lg text-gray-900 flex items-center gap-2">
-               <Logo className="h-6 w-6 text-[#1a5f3f]" />
-               Rural Costs
-            </Link>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="hidden md:flex p-2 -ml-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/50"
+              aria-label={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <div className="md:hidden flex items-center">
+              {/* Mobile simplified header/link */}
+              <Link to="/" className="font-bold text-lg text-gray-900 flex items-center gap-2">
+                 <Logo className="h-6 w-6 text-[#1a5f3f]" />
+                 Rural Costs
+              </Link>
+            </div>
           </div>
           
           {/* Quick Categories instead of page title */}

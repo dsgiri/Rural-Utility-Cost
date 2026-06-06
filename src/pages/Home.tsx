@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package } from 'lucide-react';
 
 const calculatorCategories = [
   {
@@ -141,8 +141,68 @@ const calculatorCategories = [
   {
     id: "farm",
     title: "Agriculture & Habitat",
-    desc: "Habitats, livestock, breeding, poultry",
+    desc: "Habitats, livestock, breeding, poultry, and meat processing",
     items: [
+      {
+        path: '/meat-yield',
+        title: 'Take-Home Meat Yield',
+        desc: 'Estimate how much packaged meat you can expect from a live animal or hanging weight.',
+        icon: Scale,
+        features: ['Beef & Pork', 'Cooler shrink', 'Trim loss mapping', 'Pounds per quarter/half'],
+        color: 'text-rose-600',
+        bg: 'bg-rose-50',
+        border: 'border-rose-100',
+      },
+      {
+        path: '/meat-processing',
+        title: 'Meat Processing Cost',
+        desc: 'Estimate total processing fees for butchering, cutting, wrapping, and extras.',
+        icon: Scissors,
+        features: ['Slaughter fees', 'Cut & wrap per lb', 'Disposal rates', 'Cost per hanging lb'],
+        color: 'text-orange-600',
+        bg: 'bg-orange-50',
+        border: 'border-orange-100',
+      },
+      {
+        path: '/meat-cost-per-lb',
+        title: 'Cost Per Lb & Break-Even',
+        desc: 'Calculate your actual break-even cost per pound for livestock and target sales profit.',
+        icon: Tag,
+        features: ['Feed & Sunk costs', 'Break-even /lb', 'Sale margin', 'Total profit scale'],
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-100',
+      },
+      {
+        path: '/hive-startup',
+        title: 'Hive Startup Cost',
+        desc: 'Estimate the initial cost of starting beekeeping. Plan your budget for hives, bees, tools, and gear.',
+        icon: Hexagon,
+        features: ['Bees & Gear', 'Contingency mapping', 'Per-hive vs Shared', 'Standard defaults'],
+        color: 'text-amber-600',
+        bg: 'bg-amber-50',
+        border: 'border-amber-100',
+      },
+      {
+        path: '/honey-yield',
+        title: 'Honey Yield',
+        desc: 'Estimate your apiary\'s honey production and potential revenue based on hive strength.',
+        icon: Droplet,
+        features: ['Success factors', 'Winter reserves', 'Market price scaling', 'Net harvest yield'],
+        color: 'text-amber-500',
+        bg: 'bg-amber-50',
+        border: 'border-amber-100',
+      },
+      {
+        path: '/syrup-mix',
+        title: 'Beekeeper Syrup Mix',
+        desc: 'Calculate exact sugar and water amounts for feeding bees. Perfect for spring or winter feeding.',
+        icon: Beaker,
+        features: ['1:1 and 2:1 ratios', 'Output volume scaling', 'Custom combinations', 'Pounds to Pints check'],
+        color: 'text-blue-600',
+        bg: 'bg-blue-50',
+        border: 'border-blue-100',
+      },
       {
         path: '/habitat-cost',
         title: 'Habitat Restoration Cost',
