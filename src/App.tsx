@@ -29,6 +29,7 @@ import TermsOfUse from './pages/TermsOfUse';
 import Disclaimer from './pages/Disclaimer';
 import CookiePolicy from './pages/CookiePolicy';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/water-fill" element={<WaterFill />} />
           <Route path="/septic" element={<Septic />} />
           <Route path="/fill-dirt" element={<FillDirt />} />

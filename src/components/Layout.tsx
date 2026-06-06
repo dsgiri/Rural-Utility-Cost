@@ -222,6 +222,8 @@ export function Layout({ children }: { children: ReactNode }) {
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-4">
               <Link to="/" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Home</Link>
               <span className="opacity-40">|</span>
+              <Link to="/about" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">About</Link>
+              <span className="opacity-40">|</span>
               <Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Privacy Policy</Link>
               <span className="opacity-40">|</span>
               <Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Terms of Use</Link>
