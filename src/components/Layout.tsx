@@ -399,10 +399,9 @@ export function Layout({ children }: { children: ReactNode }) {
                 
                 <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4 mt-8">Open Source</h3>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                  <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">GitHub Repository</a></li>
-                  <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Documentation</a></li>
-                  <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">License</a></li>
-                  <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Contributing Guide</a></li>
+                  <li><a href="https://github.com/dsgiri/ruralutilitycost-platform" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">GitHub Repository</a></li>
+                  <li><a href="https://github.com/dsgiri/ruralutilitycost-platform/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">License</a></li>
+                  <li><a href="https://github.com/dsgiri/ruralutilitycost-platform/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Contributing Guide</a></li>
                 </ul>
               </div>
             </div>

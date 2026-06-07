@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Target, Lightbulb, Calculator, CheckCircle2, ShieldCheck, Compass, Map, LineChart, Network } from 'lucide-react';
+import { Target, Lightbulb, Calculator, CheckCircle2, ShieldCheck, Compass, Map, LineChart, Network, Github } from 'lucide-react';
 
 export default function About() {
   return (
@@ -187,11 +187,73 @@ export default function About() {
                 A practical transparency promise, not a marketing claim.
               </p>
             </div>
-            <div className="mt-8 flex justify-center gap-4 flex-wrap">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 text-gray-900 dark:text-white font-medium rounded-lg transition-all shadow-sm">
-                View on GitHub
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+              <a href="https://github.com/dsgiri/ruralutilitycost-platform" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-platform">ruralutilitycost-platform</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Main Rural Utility Cost hub and shared platform for navigation, branding, and cross-app experience.
+                </p>
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 text-gray-900 dark:text-white font-medium rounded-lg transition-all shadow-sm">
+
+              <a href="https://github.com/dsgiri/ruralutilitycost-predictor" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-predictor">ruralutilitycost-predictor</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Model-driven prediction app for rural and agricultural outcomes, with confidence-based insights and predictive tools.
+                </p>
+              </a>
+
+              <a href="https://github.com/dsgiri/ruralutilitycost-whatif" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-whatif">ruralutilitycost-whatif</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Scenario analysis app for testing rural cost assumptions and comparing outcome changes across inputs.
+                </p>
+              </a>
+
+              <a href="https://github.com/dsgiri/ruralutilitycost-forecast" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-forecast">ruralutilitycost-forecast</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Forecasting app for agricultural trends, price outlooks, and future-oriented rural planning.
+                </p>
+              </a>
+
+              <a href="https://github.com/dsgiri/ruralutilitycost-plan" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-plan">ruralutilitycost-plan</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Planning app for budgeting, resource allocation, and practical rural decision support.
+                </p>
+              </a>
+
+              <a href="https://github.com/dsgiri/ruralutilitycost-habitat" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 rounded-2xl transition-colors group shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <Github className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-[#1a5f3f] dark:group-hover:text-green-400 transition-colors" />
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate" title="ruralutilitycost-habitat">ruralutilitycost-habitat</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Public-facing site and content hub for Rural Utility Cost, including About, resources, and product ecosystem.
+                </p>
+              </a>
+            </div>
+            
+            <div className="mt-8 flex justify-center gap-4 flex-wrap">
+              <a href="https://github.com/dsgiri/ruralutilitycost-platform" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 text-gray-900 dark:text-white font-medium rounded-lg transition-all shadow-sm">
+                <Github className="w-5 h-5" /> Main Platform Repo
+              </a>
+              <a href="https://github.com/dsgiri/ruralutilitycost-platform/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#1a5f3f] dark:hover:border-green-500 text-gray-900 dark:text-white font-medium rounded-lg transition-all shadow-sm">
                 Contribution Guidelines
               </a>
             </div>
