@@ -69,7 +69,7 @@ export function classifyIntent(input: string): ClassificationResult {
     };
   }
 
-  const primary_intent = top?.intent?.id ?? "general_browse";
+  const primary_intent = (top && top.score > 0) ? top.intent.id : "general_browse";
   const secondary_intents = second && second.score > 0 ? [second.intent.id] : [];
 
   const score = top?.score ?? 0;

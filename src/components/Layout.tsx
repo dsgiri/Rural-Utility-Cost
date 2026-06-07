@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sprout, Bug, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark, LineChart as LineChartIcon } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sprout, Bug, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark, LineChart as LineChartIcon, Heart } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode, useState, useEffect } from 'react';
 import { Logo } from './Logo';
@@ -102,6 +102,8 @@ const navCategories = [
   }
 ];
 
+import { FavoriteButton } from '../features/favorites/FavoriteButton';
+
 const enrichedNavCategories = navCategories.map(cat => ({
   ...cat,
   items: cat.items.map(item => {
@@ -192,6 +194,30 @@ export function Layout({ children }: { children: ReactNode }) {
 
         <div className="flex-grow py-4 overflow-y-auto w-60">
           <ul className="space-y-1">
+            {searchQuery === '' && (
+              <li className="mb-4">
+                <div className="px-6 pb-2 text-xs font-bold text-green-300/70 uppercase tracking-wider">
+                  Quick Access
+                </div>
+                <ul className="space-y-1">
+                  <li>
+                    <Link
+                      to="/favorites"
+                      title="Your saved calculators"
+                      className={cn(
+                        'px-6 py-2.5 flex items-center gap-3 cursor-pointer transition-all',
+                        location.pathname === '/favorites'
+                          ? 'bg-white/20 border-l-4 border-rose-400 opacity-100 font-bold text-white'
+                          : 'hover:bg-white/5 opacity-80 hover:opacity-100 border-l-4 border-transparent font-medium text-white/90'
+                      )}
+                    >
+                      <Heart className="w-4 h-4 text-rose-400" />
+                      <span className="text-sm tracking-wide">My Favorites</span>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            )}
             {filteredCategories.length === 0 && searchQuery !== '' ? (
               <li className="px-6 py-4 text-sm text-white/60 text-center italic">
                 No tools found
@@ -274,6 +300,9 @@ export function Layout({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-4">
             <A11yControls />
             <span className="text-xs text-gray-500 hidden sm:inline-block">Location Context: <span className="font-medium text-gray-800">USA</span></span>
+            {location.pathname !== '/' && navItems.some(i => i.path === location.pathname) && (
+              <FavoriteButton id={location.pathname} />
+            )}
             {location.pathname !== '/' && (
               <button className="px-4 py-1.5 bg-[#1a5f3f] text-white text-sm rounded font-medium shadow-sm hover:bg-[#154d32] transition-colors whitespace-nowrap">
                 Share Results

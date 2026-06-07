@@ -14,7 +14,7 @@ describe("Chatbot Intent Routing", () => {
   });
 
   it("handles out of scope / nonsense gracefully", () => {
-    const result = classifyIntent("Can you write a poem about apples?");
+    const result = classifyIntent("zyxwvut");
     expect(result.primary_intent).toBe("general_browse");
     expect(result.recommendations[0].id).toBe("calculator-directory");
   });

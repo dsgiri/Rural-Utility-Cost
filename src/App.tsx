@@ -3,7 +3,12 @@ import { Layout } from './components/Layout';
 import { A11yProvider } from './components/A11yProvider';
 import { CookieBanner } from './components/CookieBanner';
 import { GoogleAnalytics } from './components/GoogleAnalytics';
+import { FavoritesProvider } from './features/favorites/favoritesHook';
 import Home from './pages/Home';
+
+// Lazy load FavoritesPage if needed, but direct import is fine for now
+import FavoritesPage from './features/favorites/FavoritesPage';
+
 import WaterFill from './features/calculators/WaterFill/WaterFill';
 import Septic from './features/calculators/Septic/Septic';
 import FillDirt from './features/calculators/FillDirt/FillDirt';
@@ -63,11 +68,13 @@ import Partners from './pages/Partners';
 
 export default function App() {
   return (
-    <A11yProvider>
-      <GoogleAnalytics />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
+    <FavoritesProvider>
+      <A11yProvider>
+        <GoogleAnalytics />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/free-resources" element={<FreeResourcesPage />} />
           <Route path="/generator-planning" element={<GeneratorHub />} />
@@ -126,6 +133,7 @@ export default function App() {
         </Routes>
       </Layout>
       <CookieBanner />
-    </A11yProvider>
+      </A11yProvider>
+    </FavoritesProvider>
   );
 }

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Tractor, Sprout, Bug, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark, Calculator } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock, Search } from 'lucide-react';
 
 import { calculatorCategories } from '../config/calculatorCategories';
-
+import { FavoriteButton } from '../features/favorites/FavoriteButton';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -87,21 +87,25 @@ export default function Home() {
                 if (!calc) return null;
                 const Icon = calc.icon;
                 return (
-                  <Link 
-                    key={idx} 
-                    to={calc.path} 
-                    className="flex-shrink-0 w-[280px] sm:w-[320px] group bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300 block snap-start"
-                  >
-                    <div className={`p-5 rounded-2xl border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
-                      <div className={`p-2.5 rounded-xl bg-white shadow-sm border ${calc.border} flex-shrink-0`}>
-                        <Icon className={`w-6 h-6 ${calc.color}`} />
+                  <div key={idx} className="relative flex-shrink-0 w-[280px] sm:w-[320px] snap-start">
+                    <Link 
+                      to={calc.path} 
+                      className="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300 block h-full"
+                    >
+                      <div className={`p-5 rounded-2xl border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg} h-full`}>
+                        <div className={`p-2.5 rounded-xl bg-white shadow-sm border ${calc.border} flex-shrink-0`}>
+                          <Icon className={`w-6 h-6 ${calc.color}`} />
+                        </div>
+                        <div className="pr-6">
+                          <h3 className="font-bold text-base text-gray-900 group-hover:text-[#1a5f3f] transition-colors line-clamp-1">{calc.title}</h3>
+                          <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">{calc.desc}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-bold text-base text-gray-900 group-hover:text-[#1a5f3f] transition-colors line-clamp-1">{calc.title}</h3>
-                        <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">{calc.desc}</p>
-                      </div>
+                    </Link>
+                    <div className="absolute top-4 right-4 z-10">
+                      <FavoriteButton id={calc.path} className="!p-1.5" />
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -139,33 +143,38 @@ export default function Home() {
                   {category.items.map((calc, idx) => {
                     const Icon = calc.icon;
                     return (
-                      <Link key={idx} to={calc.path} className="group h-full min-h-[340px] flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div className={`p-6 pb-5 border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
-                          <div className={`p-3 rounded-xl bg-white shadow-sm border ${calc.border}`}>
-                            <Icon className={`w-7 h-7 ${calc.color}`} />
+                      <div key={idx} className="relative group h-full min-h-[340px]">
+                        <Link to={calc.path} className="flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full">
+                          <div className={`p-6 pb-5 border-b ${calc.border} flex items-start gap-4 transition-colors duration-300 group-hover:${calc.bg}`}>
+                            <div className={`p-3 rounded-xl bg-white shadow-sm border ${calc.border}`}>
+                              <Icon className={`w-7 h-7 ${calc.color}`} />
+                            </div>
+                            <div className="pr-8">
+                              <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#1a5f3f] transition-colors">{calc.title}</h3>
+                              <p className="text-xs text-gray-500 mt-1 leading-relaxed">{calc.desc}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#1a5f3f] transition-colors">{calc.title}</h3>
-                            <p className="text-xs text-gray-500 mt-1 leading-relaxed">{calc.desc}</p>
-                          </div>
-                        </div>
-                        
-                        <div className="p-6 flex flex-col flex-grow">
-                          <ul className="space-y-3 flex-grow mb-6">
-                            {calc.features.map((feature, fIdx) => (
-                              <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
-                                <CheckCircle2 className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
                           
-                          <div className="mt-auto flex items-center justify-between text-sm font-bold text-white bg-[#1a5f3f] group-hover:bg-[#154d32] transition-colors p-3.5 rounded-xl uppercase tracking-wider shadow-sm">
-                            <span>Calculate Now</span>
-                            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                          <div className="p-6 flex flex-col flex-grow">
+                            <ul className="space-y-3 flex-grow mb-6">
+                              {calc.features.map((feature, fIdx) => (
+                                <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
+                                  <CheckCircle2 className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                                  <span>{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            
+                            <div className="mt-auto flex items-center justify-between text-sm font-bold text-white bg-[#1a5f3f] group-hover:bg-[#154d32] transition-colors p-3.5 rounded-xl uppercase tracking-wider shadow-sm">
+                              <span>Calculate Now</span>
+                              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                            </div>
                           </div>
+                        </Link>
+                        <div className="absolute top-6 right-6 z-10 transition-transform duration-300 group-hover:-translate-y-1">
+                          <FavoriteButton id={calc.path} />
                         </div>
-                      </Link>
+                      </div>
                     )
                   })}
                 </div>
