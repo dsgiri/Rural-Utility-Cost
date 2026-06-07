@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Tractor, Sprout, Bug, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
+import { Tractor, Sprout, Bug, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark, Calculator } from 'lucide-react';
 
 const calculatorCategories = [
   {
@@ -135,6 +135,16 @@ const calculatorCategories = [
         color: 'text-indigo-600',
         bg: 'bg-indigo-50',
         border: 'border-indigo-100',
+      },
+      {
+        path: '/farm-finance',
+        title: 'Farm Finance Hub',
+        desc: 'Farm and equipment financing tools designed for rural purchases. Calculate loan payments, land affordability, and equipment carrying costs.',
+        icon: Calculator,
+        features: ['Loan Payment', 'Equipment Financing', 'Land Affordability', 'Debt Service Analysis'],
+        color: 'text-blue-600',
+        bg: 'bg-blue-50',
+        border: 'border-blue-100',
       },
       {
         path: '/energy-demand',

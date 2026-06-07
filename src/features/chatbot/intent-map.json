@@ -64,9 +64,24 @@
       "examples": [
         "Feed costs are killing me",
         "How much does it cost to raise livestock?",
-        "I need to budget farm expenses"
+        "I need to budget farm expenses",
+        "How much does fertilizer cost?",
+        "What is the cost of seed per acre?",
+        "How much yield am I losing to pests?"
       ],
       "recommended_calculators": [
+        {
+          "id": "farm-input-cost",
+          "title": "Farm Input Costs",
+          "reason": "Calculate fertilizer, seed, and spot prices.",
+          "url": "/farm-inputs"
+        },
+        {
+          "id": "crop-pest-economics",
+          "title": "Crop Pest Economics",
+          "reason": "Estimate yield loss and timing for pest management.",
+          "url": "/crop-pest-economics"
+        },
         {
           "id": "feed-cost-calculator",
           "title": "Livestock Water Calculator",
@@ -78,6 +93,37 @@
           "title": "Fencing Cost Calculator",
           "reason": "Estimate livestock fencing costs.",
           "url": "/fencing"
+        }
+      ]
+    },
+    {
+      "id": "farm_finance",
+      "label": "Farm Finance & Loans",
+      "examples": [
+        "How much is the loan payment?",
+        "Can I afford this land?",
+        "What is the payment for a tractor?",
+        "Equipment financing cost",
+        "Amortized ag loan"
+      ],
+      "recommended_calculators": [
+        {
+          "id": "farm-loan-payment",
+          "title": "Loan Payment Calculator",
+          "reason": "Estimate standard and fixed principal loan payments.",
+          "url": "/farm-finance/loan-payment"
+        },
+        {
+          "id": "equipment-payment",
+          "title": "Equipment Payment Calculator",
+          "reason": "Calculate tractor and equipment financing payments.",
+          "url": "/farm-finance/equipment-payment"
+        },
+        {
+          "id": "land-affordability",
+          "title": "Land Affordability Calculator",
+          "reason": "Check if expected land income can cover loan payments.",
+          "url": "/farm-finance/land-affordability"
         }
       ]
     },

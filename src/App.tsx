@@ -33,6 +33,10 @@ import Disclaimer from './pages/Disclaimer';
 import CookiePolicy from './pages/CookiePolicy';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import FarmFinanceLandingPage from './features/farm-finance/index';
+import LoanPaymentPage from './features/farm-finance/loan-payment/LoanPaymentPage';
+import EquipmentPaymentPage from './features/farm-finance/equipment-payment/EquipmentPaymentPage';
+import LandAffordabilityPage from './features/farm-finance/land-affordability/LandAffordabilityPage';
 import GeneratorHub from './pages/GeneratorHub';
 import UtilityCostHub from './pages/UtilityCostHub';
 import WaterPlanningHub from './pages/WaterPlanningHub';
@@ -71,6 +75,10 @@ export default function App() {
           <Route path="/water-planning" element={<WaterPlanningHub />} />
           <Route path="/farm-costs" element={<FarmCostsHub />} />
           <Route path="/farm-inputs" element={<FarmInputCost />} />
+          <Route path="/farm-finance" element={<FarmFinanceLandingPage />} />
+          <Route path="/farm-finance/loan-payment" element={<LoanPaymentPage />} />
+          <Route path="/farm-finance/equipment-payment" element={<EquipmentPaymentPage />} />
+          <Route path="/farm-finance/land-affordability" element={<LandAffordabilityPage />} />
           <Route path="/crop-pest-economics" element={<CropPestEconomics />} />
           <Route path="/land-and-construction" element={<LandConstructionHub />} />
           <Route path="/agribusiness" element={<AgribusinessHub />} />

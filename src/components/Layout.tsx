@@ -5,7 +5,7 @@ import { ReactNode, useState, useEffect } from 'react';
 import { Logo } from './Logo';
 import { A11yControls } from './A11yControls';
 
-import { Building2, Banknote, ShieldPlus } from 'lucide-react';
+import { Building2, Banknote, ShieldPlus, Calculator, Truck } from 'lucide-react';
 
 import { Chatbot } from '../features/chatbot';
 
@@ -73,6 +73,18 @@ const navCategories = [
       { path: '/cut-cost', label: 'Cut Cost', icon: Scissors, tooltip: 'Find areas to reduce operational overhead' },
       { path: '/expand-profit', label: 'Expand Profit', icon: TrendingUp, tooltip: 'Find out how to increase margins' },
       { path: '/compliance', label: 'Processing & Compliance', icon: ShieldCheck, tooltip: 'Verify state/federal regulatory compliance' },
+    ]
+  },
+  {
+    id: "finance",
+    shortTitle: "Finance",
+    categoryIcon: Calculator,
+    title: "Farm Finance & Loans",
+    items: [
+      { path: '/farm-finance', label: 'Farm Finance Hub', icon: Calculator, tooltip: 'Farm and equipment financing tools' },
+      { path: '/farm-finance/loan-payment', label: 'Loan Payment', icon: Landmark, tooltip: 'Estimate periodic loan payments for farm loans' },
+      { path: '/farm-finance/equipment-payment', label: 'Equipment Payment', icon: Truck, tooltip: 'Calculate costs for financing tractors and equipment' },
+      { path: '/farm-finance/land-affordability', label: 'Land Affordability', icon: Map, tooltip: 'Determine if your land income can cover the debt service' },
     ]
   },
   {
