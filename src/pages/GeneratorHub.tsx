@@ -34,6 +34,7 @@ export default function GeneratorHub() {
         description="Comprehensive tools and calculators for planning rural backup power. Estimate runtime, fuel costs, and required generator sizing for well pumps and critical house loads."
         url="/generator-planning"
         jsonLd={jsonLd}
+        keywords={['generators', 'backup power', 'fuel', 'electricity', 'off-grid']}
       />
 
       <div className="max-w-3xl mb-12">

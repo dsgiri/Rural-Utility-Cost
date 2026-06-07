@@ -34,6 +34,7 @@ export default function WaterPlanningHub() {
         description="Calculators and planning tools for managing rural water access, including water hauling, well drilling, and septic system costs."
         url="/water-planning"
         jsonLd={jsonLd}
+        keywords={['water', 'wells', 'septic', 'plumbing', 'hauling']}
       />
 
       <div className="max-w-3xl mb-12">

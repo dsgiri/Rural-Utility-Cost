@@ -9,6 +9,8 @@ import { Building2, Banknote, ShieldPlus, Calculator, Truck } from 'lucide-react
 
 import { Chatbot } from '../features/chatbot';
 
+import { flatNavCategories } from '../config/calculatorCategories';
+
 const navCategories = [
   {
     id: "property",
@@ -100,6 +102,21 @@ const navCategories = [
   }
 ];
 
+const enrichedNavCategories = navCategories.map(cat => ({
+  ...cat,
+  items: cat.items.map(item => {
+    let match = null;
+    for (const group of flatNavCategories) {
+      match = group.items.find(i => i.path === item.path) || match;
+    }
+    return {
+      ...item,
+      keywords: match?.keywords || [],
+      features: match?.features || []
+    };
+  })
+}));
+
 const navItems = [
   { path: '/', label: 'Home', icon: HomeIcon },
   ...navCategories.flatMap(c => c.items)
@@ -129,11 +146,14 @@ export function Layout({ children }: { children: ReactNode }) {
     }
   }, [location.pathname]);
 
-  const filteredCategories = navCategories.map(cat => ({
+  const filteredCategories = enrichedNavCategories.map(cat => ({
     ...cat,
     items: cat.items.filter(item => 
       item.label.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      cat.title.toLowerCase().includes(searchQuery.toLowerCase())
+      cat.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.tooltip.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.features.some((f: string) => f.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      item.keywords.some((k: string) => k.toLowerCase().includes(searchQuery.toLowerCase()))
     )
   })).filter(cat => cat.items.length > 0);
 

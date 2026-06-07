@@ -34,6 +34,7 @@ export default function FarmCostsHub() {
         description="Calculators and planning tools for managing agricultural and livestock costs, from raising cattle to starting a commercial apiary."
         url="/farm-costs"
         jsonLd={jsonLd}
+        keywords={['farm', 'livestock', 'agriculture', 'yields', 'feed', 'animals']}
       />
 
       <div className="max-w-3xl mb-12">

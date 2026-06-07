@@ -34,6 +34,7 @@ export default function UtilityCostHub() {
         description="Comprehensive tools and calculators for managing and budgeting rural utility costs including propane, electricity, solar, and internet."
         url="/utility-cost"
         jsonLd={jsonLd}
+        keywords={['utilities', 'electricity', 'power', 'bills', 'costs']}
       />
 
       <div className="max-w-3xl mb-12">

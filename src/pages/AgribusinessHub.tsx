@@ -34,6 +34,7 @@ export default function AgribusinessHub() {
         description="Tools for rural business planning, USDA grant finding, grant readiness assessment, and food processing compliance."
         url="/agribusiness"
         jsonLd={jsonLd}
+        keywords={['business', 'grants', 'usda', 'funding', 'profits', 'compliance', 'money']}
       />
 
       <div className="max-w-3xl mb-12">

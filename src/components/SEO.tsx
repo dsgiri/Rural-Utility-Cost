@@ -7,9 +7,10 @@ interface SEOProps {
   url?: string;
   schema?: any;
   jsonLd?: any;
+  keywords?: string[];
 }
 
-export function SEO({ title, description, url, schema, jsonLd }: SEOProps) {
+export function SEO({ title, description, url, schema, jsonLd, keywords }: SEOProps) {
   const location = useLocation();
   const currentUrl = url || location.pathname;
   const structuredData = schema || jsonLd;
@@ -18,6 +19,9 @@ export function SEO({ title, description, url, schema, jsonLd }: SEOProps) {
     <Helmet>
       <title>{title} | Rural Utility Cost</title>
       <meta name="description" content={description} />
+      {keywords && keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(', ')} />
+      )}
       <link rel="canonical" href={`https://ruralutilitycost.com${currentUrl}`} />
       {structuredData && (
         <script type="application/ld+json">

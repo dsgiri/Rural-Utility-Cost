@@ -34,6 +34,7 @@ export default function LandConstructionHub() {
         description="Calculators for rural property development, land purchasing, fencing, and material deliveries like fill dirt and gravel."
         url="/land-and-construction"
         jsonLd={jsonLd}
+        keywords={['land', 'construction', 'dirt', 'gravel', 'fencing', 'property']}
       />
 
       <div className="max-w-3xl mb-12">
