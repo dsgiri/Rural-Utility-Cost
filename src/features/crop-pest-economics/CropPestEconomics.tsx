@@ -4,12 +4,22 @@ import YieldLossCalculator from './yield-loss';
 import EconomicThresholdCalculator from './economic-threshold';
 import DegreeDayCalculator from './degree-days';
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crop Pest Economics",
+  "description": "A science-backed decision-support cluster. Estimate crop damage, understand when control action may be justified, and time your pest management based on accumulated heat units.",
+  "applicationCategory": "BusinessApplication",
+  "url": "https://ruralutilitycost.com/crop-pest-economics"
+};
+
 export default function CropPestEconomics() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-12">
       <SEO 
-        title="Crop Pest Economics & Decision Support | Rural Utility Cost" 
+        title="Crop Pest Economics | Rural Utility Cost" 
         description="Science-backed pest decision-support tools. Estimate yield loss, break-even economic thresholds, and insect degree-day development timing." 
+        jsonLd={jsonLd}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">

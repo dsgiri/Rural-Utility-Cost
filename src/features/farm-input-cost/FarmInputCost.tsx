@@ -28,12 +28,22 @@ const INITIAL_RATES: SpotRateEntry[] = [
   { id: '10', date: '2024-02-01', product: 'corn', price: 280 },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Farm Input Costs",
+  "description": "A cluster of tools to help farmers and rural property owners compare input prices, calculate cost per acre, and make profitable purchasing decisions for seed and fertilizer.",
+  "applicationCategory": "BusinessApplication",
+  "url": "https://ruralutilitycost.com/farm-inputs"
+};
+
 export default function FarmInputCost() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-12">
       <SEO 
-        title="Farm Input Cost Calculators | Rural Utility Cost" 
+        title="Farm Input Costs | Rural Utility Cost" 
         description="Compare fertilizer pricing, seed cost per acre, and track rural input spot rates. Make better purchasing decisions." 
+        jsonLd={jsonLd}
       />
       
       <Ticker rates={INITIAL_RATES} products={DEFAULT_PRODUCTS} />

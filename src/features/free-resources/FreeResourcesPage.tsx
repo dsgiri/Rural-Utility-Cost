@@ -5,12 +5,21 @@ import { ResourceSection } from './ResourceSection';
 import { Tractor, Sprout, Landmark } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Resources Hub",
+  "description": "Navigating agricultural support doesn't have to be overwhelming. We've curated the most useful, highly-credible free resources to help you fund your land, manage your business, and get expert local advice.",
+  "url": "https://ruralutilitycost.com/free-resources"
+};
+
 export default function FreeResourcesPage() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-12">
       <SEO 
-        title="Top Free Resources for Farmers, Ranchers & Homesteaders | Rural Utility Cost" 
+        title="Free Resources Hub | Rural Utility Cost" 
         description="A curated guide to the best free programs, extension offices, grants, and USDA support for new and experienced farmers." 
+        jsonLd={jsonLd}
       />
 
       {/* Hero Section */}
@@ -18,7 +27,7 @@ export default function FreeResourcesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl lg:text-5xl tracking-tight mb-4">
-              Top Free Resources for Farmers, Ranchers & Homesteaders
+              Free Resources Hub
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
               Navigating agricultural support doesn't have to be overwhelming. We've curated the most useful, highly-credible free resources to help you fund your land, manage your business, and get expert local advice.
@@ -94,6 +103,34 @@ export default function FreeResourcesPage() {
               <Link to="/livestock" className="text-[#1a5f3f] dark:text-[#6ee7b7] font-semibold hover:underline">
                 Livestock Profit Tools &rarr;
               </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Are all of these resources completely free?</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Yes, every resource listed on this page is free to access. Extension office consultations, USDA programs, and the linked nonprofit tools do not charge a fee for fundamental guidance, though some physical soil tests or in-person workshops may have nominal material costs depending on your state.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">I am just getting started. Where do I even begin?</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Start with the USDA Service Center Locator. Establishing a relationship with your local FSA (Farm Service Agency) and getting a Farm Tract Number is the gateway to nearly all other federal assistance, grants, and conservation payments.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I find local resources not listed here?</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                We highly recommend contacting your state's Cooperative Extension Office. They operate through land-grant universities in every state and can connect you with hyper-local resources, pasture walks, field days, and regional farming networks that specialize in your specific climate and geography.
+              </p>
             </div>
           </div>
         </div>
