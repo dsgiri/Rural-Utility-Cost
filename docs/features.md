@@ -31,6 +31,8 @@ This document acts as an explicit inventory of all high-level features, core cap
 - **Cable TV Cost (`/cable`):** Compare cable TV and streaming packages.
 
 ### Agriculture & Habitat
+- **Farm Input Costs (`/farm-inputs`):** Calculate custom fertilizer blends, seeding rates, and spot spray tank mixes.
+- **Crop Pest Economics (`/crop-pest-economics`):** Estimate pest yield loss, economic injury thresholds, and track degree-days for insect development.
 - **Take-Home Meat Yield (`/meat-yield`):** Estimate meat yield from live hanging weight.
 - **Meat Processing Cost (`/meat-processing`):** Estimate total processing fees for butchering.
 - **Cost Per Lb & Break-Even (`/meat-cost-per-lb`):** Calculate break-even cost per pound for livestock.

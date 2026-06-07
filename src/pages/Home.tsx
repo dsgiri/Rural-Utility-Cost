@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Tractor, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
+import { Tractor, Sprout, Bug, Truck, Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, ArrowRight, CheckCircle2, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Clock, ZapOff, AlertOctagon, Landmark } from 'lucide-react';
 
 const calculatorCategories = [
   {
@@ -233,6 +233,26 @@ const calculatorCategories = [
     title: "Agriculture & Habitat",
     desc: "Habitats, livestock, breeding, poultry, and meat processing",
     items: [
+      {
+        path: '/farm-inputs',
+        title: 'Farm Input Costs',
+        desc: 'Compare fertilizer pricing (N-P-K-S), seed cost per acre, and spot rates.',
+        icon: Sprout,
+        features: ['Fertilizer Cost/lb', 'Seed Rate/Acre', 'Spot Rate Tracker', 'Nutrient Value'],
+        color: 'text-green-600',
+        bg: 'bg-green-50',
+        border: 'border-green-100',
+      },
+      {
+        path: '/crop-pest-economics',
+        title: 'Pest Economics',
+        desc: 'Estimate pest yield loss, break-even thresholds, and insect degree-days.',
+        icon: Bug,
+        features: ['Yield Loss Value', 'Economic Threshold', 'Action Horizon', 'Degree-Days Timing'],
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-100',
+      },
       {
         path: '/livestock-age',
         title: 'Livestock Age Estimator',

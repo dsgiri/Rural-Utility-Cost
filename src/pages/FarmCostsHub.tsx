@@ -45,6 +45,32 @@ export default function FarmCostsHub() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <Tractor className="text-green-600 w-6 h-6" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Farm Input Costs</h2>
+          <p className="text-gray-600 mb-4">
+            Compare fertilizer pricing by actual nutrient value, calculate seed cost per acre, and track rural input spot rates.
+          </p>
+          <Link to="/farm-inputs" className="text-blue-600 font-medium flex items-center hover:text-blue-700">
+            Compare Input Costs <ChevronRight className="w-4 h-4 ml-1" />
+          </Link>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div className="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <Bug className="text-emerald-600 w-6 h-6" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Crop Pest Economics</h2>
+          <p className="text-gray-600 mb-4">
+            Estimate pest yield loss, calculate economic thresholds, and time treatment with insect degree-days.
+          </p>
+          <Link to="/crop-pest-economics" className="text-blue-600 font-medium flex items-center hover:text-blue-700">
+            Pest Tools <ChevronRight className="w-4 h-4 ml-1" />
+          </Link>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
           <div className="bg-amber-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
             <Tractor className="text-amber-600 w-6 h-6" />
           </div>

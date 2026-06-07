@@ -33,6 +33,8 @@ This document outlines the user-facing functional scenarios that must be verifie
 | F-FRM-01 | Date Math Integrity | Select leap-year start dates or end dates spanning months for Gestation/Incubation. | Correct due dates / hatch dates output accurately using native JS date math. | ✅ Pass |
 | F-FRM-02 | Yield Bounding | Enter live weights over physical maximums (e.g., 5000 lbs.) for Meat Yield. | Calculates linearly, gracefully handling comma insertion. | ✅ Pass |
 | F-FRM-03 | Component Isolation | Switch animal type on Incubation calculator. | Lock-down and turning dates completely recalculate based on specific species configuration. | ✅ Pass |
+| F-FRM-04 | Logic Boundaries | Enter zero values for critical variables in Economic Threshold. | Calculator catches division-by-zero risk, outputs safe 0 or false, rendering 'invalid' state gracefully. | ✅ Pass |
+| F-FRM-05 | Complex Input Logic | Provide field N-P-K needs and toggle custom fertilizer blend types. | Calculates required bag/tonnage correctly, reversing N-P-K nutrient percentages up to total product weight. | ✅ Pass |
 
 ## 5. Business & Profit Calculators (`BIZ`)
 *(Applies to Pain Point Priority, Cut Cost, Expand Profit, Compliance)*

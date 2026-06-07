@@ -234,6 +234,54 @@ Use these unique `CALC` tracking codes in Jira, GitHub issues, and code document
 * **Outputs:** ADG, total weight gained, days to target, projected future weight, growth status (on-track/ahead/behind).
 * **Target Pain Points:** Tracking feed efficiency, estimating finish dates for beef cattle.
 
+### `CALC-FARM-313`: Fertilizer Blend & Cost (`/farm-inputs`)
+* **Description:** Calculates required fertilizer tons and total cost based on field N-P-K nutrient requirements.
+* **Functionality:** Matches custom blend density against total acreage needs.
+* **Inputs:** Acreage, required lbs/acre of N-P-K, selected fertilizer type (Urea, DAP, Potash), price per ton, application fee.
+* **Core Calculation:** `(Lbs_Needed / %_Nutrient_by_Weight) * Acres / 2000` to find tons ordered.
+* **Outputs:** Required tons of product, raw material cost, total applied cost, cost per acre.
+* **Target Pain Points:** Overbuying bulk fertilizer or failing to calculate application fees into per-acre costs.
+
+### `CALC-FARM-314`: Seeding Rate & Population (`/farm-inputs`)
+* **Description:** Determines seed pounds required per acre using desired plant population and seed metrics.
+* **Functionality:** Translates target stand counts and germination rates into physical bag requirements.
+* **Inputs:** Target plant population, seed weight (seeds/lb), germination %, purity %, acres.
+* **Core Calculation:** `(Target / (Seeds_Per_Lb * Germination * Purity)) * Acres`
+* **Outputs:** Pounds required per acre, total pounds needed, total bags required.
+* **Target Pain Points:** Undersowing fields due to poor germination assumptions or miscalculating seeds per pound.
+
+### `CALC-FARM-315`: Tank Mix & Spot Spray (`/farm-inputs`)
+* **Description:** Calculates exact pesticide/herbicide volumes for knapsack or spot sprayer tanks.
+* **Functionality:** Adjusts label rates per acre/gallon down to specific small-tank batches.
+* **Inputs:** Tank size (gallons), label rate (oz/acre or oz/gal), carrier volume (gal/acre).
+* **Core Calculation:** `(Tank_Size / Carrier_Volume) * Label_Rate`
+* **Outputs:** Fluid ounces/mL to add to tank, acres covered per tank.
+* **Target Pain Points:** Mixing "hot" batches that burn crops or "weak" batches that fail to kill weeds.
+
+### `CALC-FARM-316`: Pest Yield-Loss Estimator (`/crop-pest-economics`)
+* **Description:** Translates physical pest damage percentage into direct dollar loss per acre.
+* **Functionality:** Calculates theoretical revenue loss and compares it to treatment cost to determine if action is justified.
+* **Inputs:** Expected yield, crop price, estimated loss %, control cost per acre.
+* **Core Calculation:** `(Yield * % Loss * Price) - Control Cost`
+* **Outputs:** Lost yield, dollar loss per acre, net impact, break-even conclusion.
+* **Target Pain Points:** Spending $25/acre to save $15/acre of crop value.
+
+### `CALC-FARM-317`: Economic Threshold Calculator (`/crop-pest-economics`)
+* **Description:** Calculates the exact pest density at which control action breaks even financially (Economic Injury Level).
+* **Functionality:** Classic ET/EIL formula solving for pest counts.
+* **Inputs:** Control cost, crop value, efficacy %, yield loss per pest unit, scouted level.
+* **Core Calculation:** `EIL = Control_Cost / (Crop_Value * Injury_Per_Pest * Efficacy)` 
+* **Outputs:** Economic Injury Level (EIL), Economic Threshold (ET), treatment recommendation based on current scouted numbers.
+* **Target Pain Points:** Panic-spraying bugs that aren't mathematically dense enough to cause economic harm.
+
+### `CALC-FARM-318`: Degree-Day Insect Timing (`/crop-pest-economics`)
+* **Description:** Estimates insect development phases by tracking accumulated heat units (Degree-Days).
+* **Functionality:** Calculates daily base-temperature heat accumulation.
+* **Inputs:** Lower threshold temperature, upper threshold, daily max/min temperatures, biofix start.
+* **Core Calculation:** `((Max_Temp + Min_Temp) / 2) - Lower_Threshold`
+* **Outputs:** Daily accumulated Degree-Days, total season heat units, next expected biological milestone.
+* **Target Pain Points:** Spraying insecticides too early (before egg hatch) or too late (after protective life stages).
+
 ---
 
 ## 💼 4. Business & Profit (`BIZ`)

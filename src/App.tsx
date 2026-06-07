@@ -24,6 +24,8 @@ import EnergyDemand from './features/calculators/EnergyDemand/EnergyDemand';
 import RuralLand from './features/calculators/RuralLand/RuralLand';
 import HabitatCost from './features/calculators/HabitatCost/HabitatCost';
 import FoodProcessingCompliance from './features/calculators/FoodProcessingCompliance/FoodProcessingCompliance';
+import FarmInputCost from './features/farm-input-cost/FarmInputCost';
+import CropPestEconomics from './features/crop-pest-economics/CropPestEconomics';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Disclaimer from './pages/Disclaimer';
@@ -66,6 +68,8 @@ export default function App() {
           <Route path="/utility-cost" element={<UtilityCostHub />} />
           <Route path="/water-planning" element={<WaterPlanningHub />} />
           <Route path="/farm-costs" element={<FarmCostsHub />} />
+          <Route path="/farm-inputs" element={<FarmInputCost />} />
+          <Route path="/crop-pest-economics" element={<CropPestEconomics />} />
           <Route path="/land-and-construction" element={<LandConstructionHub />} />
           <Route path="/agribusiness" element={<AgribusinessHub />} />
           <Route path="/water-fill" element={<WaterFill />} />
