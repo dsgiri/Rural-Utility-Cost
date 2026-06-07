@@ -51,5 +51,6 @@ This document acts as an explicit inventory of all high-level features, core cap
 - **Food Processing Compliance (`/compliance`):** Estimate organic certification costs and FDA readiness.
 
 ### Government & Grants
+- **Free Resources Hub (`/free-resources`):** Curated guide to the best free programs, extension offices, and USDA support.
 - **Grant Match & Readiness (`/grant-readiness`):** Calculate mandated cash match and reimbursable bridge funding.
 - **Grant & Aid Finder (`/grant-finder`):** Search for government programs, rebates, and aid.

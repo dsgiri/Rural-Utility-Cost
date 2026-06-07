@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark, LineChart as LineChartIcon } from 'lucide-react';
+import { Droplet, LayoutGrid, Shovel, Trees, ArrowDownToDot, PawPrint, Sprout, Bug, Sun, Wifi, Tv, Home as HomeIcon, Flame, Crop, CalendarHeart, Bird, Scissors, TrendingUp, Search, Zap, ShieldCheck, Map, Leaf, Hexagon, Beaker, Scale, Tag, Package, Menu, ChevronLeft, ChevronRight, Clock, ZapOff, AlertOctagon, Landmark, LineChart as LineChartIcon } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ReactNode, useState, useEffect } from 'react';
 import { Logo } from './Logo';
@@ -47,6 +47,8 @@ const navCategories = [
     categoryIcon: PawPrint,
     title: "Animal & Farm",
     items: [
+      { path: '/farm-inputs', label: 'Farm Input Cost', icon: Sprout, tooltip: 'Calculate costs for fertilizer, seed, and chemical sprays' },
+      { path: '/crop-pest-economics', label: 'Pest Economics', icon: Bug, tooltip: 'Estimate yield loss, economic thresholds, and degree-days' },
       { path: '/livestock-age', label: 'Livestock Age Estimator', icon: PawPrint, tooltip: 'Estimate the approximate age of cattle based on teeth' },
       { path: '/cattle-growth-chart', label: 'Cattle Growth Chart', icon: LineChartIcon, tooltip: 'Track cattle weight gain and average daily gain (ADG)' },
       { path: '/meat-yield', label: 'Take-Home Meat Yield', icon: Scale, tooltip: 'Estimate packaged meat from live or hanging weight' },
@@ -79,6 +81,7 @@ const navCategories = [
     categoryIcon: Banknote,
     title: "Government Aid & Grants",
     items: [
+      { path: '/free-resources', label: 'Free Resources', icon: Banknote, tooltip: 'A curated guide to the best free programs and USDA support' },
       { path: '/grant-readiness', label: 'Grant Match & Readiness', icon: Landmark, tooltip: 'Calculate cash match and bridge funding' },
       { path: '/grant-finder', label: 'Grant Finder', icon: Search, tooltip: 'Search for USDA or state agriculture grants' },
     ]

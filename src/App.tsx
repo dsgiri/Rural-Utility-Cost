@@ -26,6 +26,7 @@ import HabitatCost from './features/calculators/HabitatCost/HabitatCost';
 import FoodProcessingCompliance from './features/calculators/FoodProcessingCompliance/FoodProcessingCompliance';
 import FarmInputCost from './features/farm-input-cost/FarmInputCost';
 import CropPestEconomics from './features/crop-pest-economics/CropPestEconomics';
+import FreeResourcesPage from './features/free-resources/FreeResourcesPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Disclaimer from './pages/Disclaimer';
@@ -64,6 +65,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/free-resources" element={<FreeResourcesPage />} />
           <Route path="/generator-planning" element={<GeneratorHub />} />
           <Route path="/utility-cost" element={<UtilityCostHub />} />
           <Route path="/water-planning" element={<WaterPlanningHub />} />

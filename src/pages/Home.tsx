@@ -436,6 +436,16 @@ const calculatorCategories = [
         color: 'text-emerald-600',
         bg: 'bg-emerald-50',
         border: 'border-emerald-100',
+      },
+      {
+        path: '/free-resources',
+        title: 'Free Resources Hub',
+        desc: 'A curated guide to the best free programs, extension offices, grants, and USDA support.',
+        icon: Landmark,
+        features: ['USDA Programs', 'Local Extension', 'Farm Aid', 'Funding Resources'],
+        color: 'text-emerald-700',
+        bg: 'bg-emerald-100',
+        border: 'border-emerald-200',
       }
     ]
   },
