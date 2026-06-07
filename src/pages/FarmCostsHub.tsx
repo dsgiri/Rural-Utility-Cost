@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { Tractor, Bug, Beef, CalendarClock, ChevronRight, Info } from 'lucide-react';
+import { Tractor, Bug, Beef, CalendarClock, ChevronRight, Info, TrendingUp } from 'lucide-react';
 
 export default function FarmCostsHub() {
   const jsonLd = {
