@@ -301,7 +301,7 @@ export function Layout({ children }: { children: ReactNode }) {
           
           {/* SITEWIDE FAT FOOTER */}
           <footer className="mt-8 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111827] px-4 sm:px-8 py-12 shrink-0 print:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
               <div className="col-span-1 sm:col-span-2 lg:col-span-1">
                 <Link to="/" onClick={() => setSearchQuery('')} className="flex items-center gap-2 mb-4">
                   <Logo className="w-8 h-8 text-[#1a5f3f]" />
@@ -339,29 +339,29 @@ export function Layout({ children }: { children: ReactNode }) {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Official Sources</h3>
-                <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                  <li><Link to="/sources" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">All Sources & Science</Link></li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Company</h3>
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Organization</h3>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><Link to="/about" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">About Us</Link></li>
                   <li><Link to="/contact" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Contact</Link></li>
+                  <li><Link to="/sources" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">All Sources & Science</Link></li>
                   <li><Link to="/credits" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Credits</Link></li>
                   <li><Link to="/partners" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Partners</Link></li>
-                  <li><Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Privacy Policy</Link></li>
-                  <li><Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Terms of Use</Link></li>
-                  <li><Link to="/disclaimer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Disclaimer</Link></li>
                 </ul>
               </div>
             </div>
             
-            <div className="max-w-7xl mx-auto pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-xs text-gray-500 dark:text-gray-400">
-              <p className="mb-2 font-semibold text-gray-700 dark:text-gray-300 text-sm">All calculator results are estimates only.</p>
-              <p>&copy; {new Date().getFullYear()} Rural Utility Cost. All rights reserved.</p>
+            <div className="max-w-7xl mx-auto pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-center md:text-left">
+                <p className="mb-1 font-semibold text-gray-700 dark:text-gray-300 text-sm">All calculator results are estimates only.</p>
+                <p>&copy; {new Date().getFullYear()} Rural Utility Cost. All rights reserved.</p>
+              </div>
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Privacy Policy</Link>
+                <span className="opacity-30">|</span>
+                <Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Terms of Use</Link>
+                <span className="opacity-30">|</span>
+                <Link to="/disclaimer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Disclaimer</Link>
+              </div>
             </div>
           </footer>
         </div>
