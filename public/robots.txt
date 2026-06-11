@@ -1,3 +1,10 @@
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Allow: /favicon.png
+Allow: /favicon.ico
+Allow: /favicon.svg
+
 User-agent: *
 Allow: /
 

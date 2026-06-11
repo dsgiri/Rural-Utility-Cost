@@ -36,13 +36,13 @@ export default function Home() {
     <div className="flex flex-col w-full h-full">
       <SEO 
         title="Rural Utility Cost Calculators - Water, Septic, Well, Solar, Internet & More" 
-        description="A public, free-to-use, open-source, and community-driven collection of calculators for rural homeowners. Calculate water fill cost, septic tank size, well drilling cost, fill dirt, solar, and more."
+        description="Free, easy-to-use calculators for rural homeowners. Accurately estimate costs for water delivery, septic tanks, well drilling, solar power, and more."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Rural Utility Cost Calculators",
           "url": "https://ruralutilitycost.com",
-          "description": "A public, free-to-use, open-source, and community-driven platform for rural utility and off-grid living calculations."
+          "description": "Free, easy-to-use calculators for rural homeowners. Accurately estimate costs for water delivery, septic tanks, well drilling, solar power, and more."
         }}
       />
       
