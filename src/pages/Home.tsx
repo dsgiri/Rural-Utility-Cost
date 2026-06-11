@@ -136,7 +136,7 @@ export default function Home() {
               return (
               <div key={catIdx} id={category.id} className="space-y-6 pt-6 -mt-6">
                 <div className="border-b border-gray-200 pb-3">
-                  <h3 className="text-2xl font-bold text-gray-900">{category.title}</h3>
+                  <h2 className="text-2xl font-bold text-gray-900">{category.title}</h2>
                   <p className="text-gray-500 mt-1">{category.desc}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -159,7 +159,7 @@ export default function Home() {
                             <ul className="space-y-3 flex-grow mb-6">
                               {calc.features.map((feature, fIdx) => (
                                 <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
-                                  <CheckCircle2 className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                                  <CheckCircle2 className="w-4 h-4 text-green-500/80 flex-shrink-0" />
                                   <span>{feature}</span>
                                 </li>
                               ))}

@@ -181,14 +181,14 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="px-4 py-3 border-b border-white/10 w-60">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
-              <Search className="h-4 w-4 text-white/50" />
+              <Search className="h-4 w-4 text-white/70" />
             </div>
             <input
               type="text"
               placeholder="Search tools..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-black/20 border border-white/10 rounded-lg text-sm text-white placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400 transition-colors"
+              className="w-full pl-9 pr-3 py-2 bg-black/20 border border-white/10 rounded-lg text-sm text-white placeholder-white/70 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400 transition-colors"
             />
           </div>
         </div>
@@ -197,7 +197,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <ul className="space-y-1">
             {searchQuery === '' && (
               <li className="mb-4">
-                <div className="px-6 pb-2 text-xs font-bold text-green-300/70 uppercase tracking-wider">
+                <div className="px-6 pb-2 text-xs font-bold text-green-100 uppercase tracking-wider">
                   Quick Access
                 </div>
                 <ul className="space-y-1">
@@ -226,7 +226,7 @@ export function Layout({ children }: { children: ReactNode }) {
             ) : (
               filteredCategories.map((category) => (
                 <li key={category.title} className="pt-4">
-                  <div className="px-6 pb-2 text-xs font-bold text-green-300/70 uppercase tracking-wider">
+                  <div className="px-6 pb-2 text-xs font-bold text-green-100 uppercase tracking-wider">
                     {category.title}
                   </div>
                   <ul className="space-y-1">
@@ -365,7 +365,7 @@ export function Layout({ children }: { children: ReactNode }) {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Calculator Hubs</h3>
+                <h2 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Calculator Hubs</h2>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><Link to="/generator-planning" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Generator Planning</Link></li>
                   <li><Link to="/utility-cost" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Energy & Utilities</Link></li>
@@ -377,7 +377,7 @@ export function Layout({ children }: { children: ReactNode }) {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Top Tools</h3>
+                <h2 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Top Tools</h2>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><Link to="/septic" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Septic Tank Sizing</Link></li>
                   <li><Link to="/fencing" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Fencing Estimator</Link></li>
@@ -389,7 +389,7 @@ export function Layout({ children }: { children: ReactNode }) {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Organization</h3>
+                <h2 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Organization</h2>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><Link to="/portfolio" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Platform Portfolio</Link></li>
                   <li><Link to="/about" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">About Us</Link></li>
@@ -399,7 +399,7 @@ export function Layout({ children }: { children: ReactNode }) {
                   <li><Link to="/partners" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">Partners</Link></li>
                 </ul>
                 
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4 mt-8">Open Source</h3>
+                <h2 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4 mt-8">Open Source</h2>
                 <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <li><a href="https://github.com/dsgiri/ruralutilitycost-platform" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">GitHub Repository</a></li>
                   <li><a href="https://github.com/dsgiri/ruralutilitycost-platform/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] hover:underline font-medium">License</a></li>
@@ -417,9 +417,9 @@ export function Layout({ children }: { children: ReactNode }) {
               </div>
               <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4 flex-shrink-0 pt-2">
                 <Link to="/privacy-policy" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Privacy Policy</Link>
-                <span className="opacity-30">|</span>
+                <span className="text-gray-400 dark:text-gray-600">|</span>
                 <Link to="/terms-of-use" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Terms of Use</Link>
-                <span className="opacity-30">|</span>
+                <span className="text-gray-400 dark:text-gray-600">|</span>
                 <Link to="/disclaimer" className="hover:text-[#1a5f3f] dark:hover:text-[#6ee7b7] transition-colors">Disclaimer</Link>
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { A11yProvider } from './components/A11yProvider';
@@ -6,67 +7,65 @@ import { GoogleAnalytics } from './components/GoogleAnalytics';
 import { FavoritesProvider } from './features/favorites/favoritesHook';
 import Home from './pages/Home';
 
-// Lazy load FavoritesPage if needed, but direct import is fine for now
-import FavoritesPage from './features/favorites/FavoritesPage';
+const FavoritesPage = lazy(() => import('./features/favorites/FavoritesPage'));
+const WaterFill = lazy(() => import('./features/calculators/WaterFill/WaterFill'));
+const Septic = lazy(() => import('./features/calculators/Septic/Septic'));
+const FillDirt = lazy(() => import('./features/calculators/FillDirt/FillDirt'));
+const Gravel = lazy(() => import('./features/calculators/Gravel/Gravel'));
+const Well = lazy(() => import('./features/calculators/Well/Well'));
+const Livestock = lazy(() => import('./features/calculators/Livestock/Livestock'));
+const Solar = lazy(() => import('./features/calculators/Solar/Solar'));
+const Internet = lazy(() => import('./features/calculators/Internet/Internet'));
+const Cable = lazy(() => import('./features/calculators/Cable/Cable'));
+const Fencing = lazy(() => import('./features/calculators/Fencing/Fencing'));
+const Propane = lazy(() => import('./features/calculators/Propane/Propane'));
+const Gestation = lazy(() => import('./features/calculators/Gestation/Gestation'));
+const Incubation = lazy(() => import('./features/calculators/Incubation/Incubation'));
+const CutCost = lazy(() => import('./features/calculators/CutCost/CutCost'));
+const ExpandProfit = lazy(() => import('./features/calculators/ExpandProfit/ExpandProfit'));
+const GrantFinder = lazy(() => import('./features/calculators/GrantFinder/GrantFinder'));
+const EnergyDemand = lazy(() => import('./features/calculators/EnergyDemand/EnergyDemand'));
+const RuralLand = lazy(() => import('./features/calculators/RuralLand/RuralLand'));
+const HabitatCost = lazy(() => import('./features/calculators/HabitatCost/HabitatCost'));
+const FoodProcessingCompliance = lazy(() => import('./features/calculators/FoodProcessingCompliance/FoodProcessingCompliance'));
+const FarmInputCost = lazy(() => import('./features/farm-input-cost/FarmInputCost'));
+const CropPestEconomics = lazy(() => import('./features/crop-pest-economics/CropPestEconomics'));
+const FreeResourcesPage = lazy(() => import('./features/free-resources/FreeResourcesPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
+const Disclaimer = lazy(() => import('./pages/Disclaimer'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const Contact = lazy(() => import('./pages/Contact'));
+const About = lazy(() => import('./pages/About'));
+const FarmFinanceLandingPage = lazy(() => import('./features/farm-finance/index'));
+const LoanPaymentPage = lazy(() => import('./features/farm-finance/loan-payment/LoanPaymentPage'));
+const EquipmentPaymentPage = lazy(() => import('./features/farm-finance/equipment-payment/EquipmentPaymentPage'));
+const LandAffordabilityPage = lazy(() => import('./features/farm-finance/land-affordability/LandAffordabilityPage'));
+const GeneratorHub = lazy(() => import('./pages/GeneratorHub'));
+const UtilityCostHub = lazy(() => import('./pages/UtilityCostHub'));
+const WaterPlanningHub = lazy(() => import('./pages/WaterPlanningHub'));
+const FarmCostsHub = lazy(() => import('./pages/FarmCostsHub'));
+const LandConstructionHub = lazy(() => import('./pages/LandConstructionHub'));
+const AgribusinessHub = lazy(() => import('./pages/AgribusinessHub'));
+const HiveStartup = lazy(() => import('./features/calculators/HiveStartup/HiveStartup'));
+const HoneyYield = lazy(() => import('./features/calculators/HoneyYield/HoneyYield'));
+const SyrupMix = lazy(() => import('./features/calculators/SyrupMix/SyrupMix'));
+const MeatYield = lazy(() => import('./features/calculators/MeatYield/MeatYield'));
+const MeatProcessing = lazy(() => import('./features/calculators/MeatProcessing/MeatProcessing'));
+const MeatCostPerLb = lazy(() => import('./features/calculators/MeatCostPerLb/MeatCostPerLb'));
+const LivestockAge = lazy(() => import('./features/calculators/LivestockAge/LivestockAge'));
+const CattleGrowthChart = lazy(() => import('./features/calculators/CattleGrowthChart/CattleGrowthChart'));
+const GenRuntime = lazy(() => import('./features/calculators/GenRuntime/GenRuntime'));
+const GenFuelCost = lazy(() => import('./features/calculators/GenFuelCost/GenFuelCost'));
+const GenCriticalLoad = lazy(() => import('./features/calculators/GenCriticalLoad/GenCriticalLoad'));
+const PainPointPriority = lazy(() => import('./features/calculators/PainPointPriority/PainPointPriority'));
+const GrantReadiness = lazy(() => import('./features/calculators/GrantReadiness/GrantReadiness'));
 
-import WaterFill from './features/calculators/WaterFill/WaterFill';
-import Septic from './features/calculators/Septic/Septic';
-import FillDirt from './features/calculators/FillDirt/FillDirt';
-import Gravel from './features/calculators/Gravel/Gravel';
-import Well from './features/calculators/Well/Well';
-import Livestock from './features/calculators/Livestock/Livestock';
-import Solar from './features/calculators/Solar/Solar';
-import Internet from './features/calculators/Internet/Internet';
-import Cable from './features/calculators/Cable/Cable';
-import Fencing from './features/calculators/Fencing/Fencing';
-import Propane from './features/calculators/Propane/Propane';
-import Gestation from './features/calculators/Gestation/Gestation';
-import Incubation from './features/calculators/Incubation/Incubation';
-import CutCost from './features/calculators/CutCost/CutCost';
-import ExpandProfit from './features/calculators/ExpandProfit/ExpandProfit';
-import GrantFinder from './features/calculators/GrantFinder/GrantFinder';
-import EnergyDemand from './features/calculators/EnergyDemand/EnergyDemand';
-import RuralLand from './features/calculators/RuralLand/RuralLand';
-import HabitatCost from './features/calculators/HabitatCost/HabitatCost';
-import FoodProcessingCompliance from './features/calculators/FoodProcessingCompliance/FoodProcessingCompliance';
-import FarmInputCost from './features/farm-input-cost/FarmInputCost';
-import CropPestEconomics from './features/crop-pest-economics/CropPestEconomics';
-import FreeResourcesPage from './features/free-resources/FreeResourcesPage';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfUse from './pages/TermsOfUse';
-import Disclaimer from './pages/Disclaimer';
-import CookiePolicy from './pages/CookiePolicy';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import FarmFinanceLandingPage from './features/farm-finance/index';
-import LoanPaymentPage from './features/farm-finance/loan-payment/LoanPaymentPage';
-import EquipmentPaymentPage from './features/farm-finance/equipment-payment/EquipmentPaymentPage';
-import LandAffordabilityPage from './features/farm-finance/land-affordability/LandAffordabilityPage';
-import GeneratorHub from './pages/GeneratorHub';
-import UtilityCostHub from './pages/UtilityCostHub';
-import WaterPlanningHub from './pages/WaterPlanningHub';
-import FarmCostsHub from './pages/FarmCostsHub';
-import LandConstructionHub from './pages/LandConstructionHub';
-import AgribusinessHub from './pages/AgribusinessHub';
-import HiveStartup from './features/calculators/HiveStartup/HiveStartup';
-import HoneyYield from './features/calculators/HoneyYield/HoneyYield';
-import SyrupMix from './features/calculators/SyrupMix/SyrupMix';
-import MeatYield from './features/calculators/MeatYield/MeatYield';
-import MeatProcessing from './features/calculators/MeatProcessing/MeatProcessing';
-import MeatCostPerLb from './features/calculators/MeatCostPerLb/MeatCostPerLb';
-import LivestockAge from './features/calculators/LivestockAge/LivestockAge';
-import CattleGrowthChart from './features/calculators/CattleGrowthChart/CattleGrowthChart';
-import GenRuntime from './features/calculators/GenRuntime/GenRuntime';
-import GenFuelCost from './features/calculators/GenFuelCost/GenFuelCost';
-import GenCriticalLoad from './features/calculators/GenCriticalLoad/GenCriticalLoad';
-import PainPointPriority from './features/calculators/PainPointPriority/PainPointPriority';
-import GrantReadiness from './features/calculators/GrantReadiness/GrantReadiness';
-
-import Sources from './pages/Sources';
-import Credits from './pages/Credits';
-import Partners from './pages/Partners';
-import AdsDemo from './pages/AdsDemo';
-import Portfolio from './pages/Portfolio';
+const Sources = lazy(() => import('./pages/Sources'));
+const Credits = lazy(() => import('./pages/Credits'));
+const Partners = lazy(() => import('./pages/Partners'));
+const AdsDemo = lazy(() => import('./pages/AdsDemo'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
 
 export default function App() {
   return (
@@ -74,7 +73,8 @@ export default function App() {
       <A11yProvider>
         <GoogleAnalytics />
         <Layout>
-          <Routes>
+          <Suspense fallback={<div className="flex-1 flex items-center justify-center min-h-[50vh]"><div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -135,6 +135,7 @@ export default function App() {
           <Route path="/partners" element={<Partners />} />
           <Route path="/ads-demo" element={<AdsDemo />} />
         </Routes>
+        </Suspense>
       </Layout>
       <CookieBanner />
       </A11yProvider>
